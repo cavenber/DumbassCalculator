@@ -135,62 +135,78 @@ def dec_bin_conversion():
     while True:
         print("\nDecimal & Binary Conversion")
         # input
-        num = input("Please enter your decimal or binary number: ").lower()
+        dorb = input("Please choose your type of number (d: decimal, b: binary): ").lower()
+        if dorb == "stop":
+            stop()
+        elif dorb == "back":
+            start()
+            return
+        num = input("Please enter your number: ").lower()
         if num == "stop":
             stop()
         elif num == "back":
-            start()
-            return
+            continue
         break
-    if is_valid_equation(num):
-        num = eval(num)
-        if set(str(num)) == {"0", "1"}:
-            ans = []
-            d, p = 0, 0
-            b = num
-            while b:
-                d += (b % 10) * (2 ** p)
-                b //= 10
-                p += 1
-            ans.append(d)
-            print(f"\nThe binary to decimal conversion result is {ans}\n")
-            Recwriter.p9a(num, ans)
-            restart()
-        elif isinstance(num, int):
-            ans = []
-            b = ""
-            while num > 0:
-                b += str(num % 2)
-                num //= 2
-            ans.append(b)
-            print(f"\nThe decimal to binary conversion result is {ans}\n")
-            Recwriter.p9b(num, ans)
-            restart()
-        elif all(set(str(n)) == {"0", "1"} for n in num):
-            ans = []
-            d, p = 0, 0
-            for b in num:
+    if dorb == "b":
+        if is_valid_equation(num): # verification
+            num = eval(num)
+            if type(num) == tuple:
+                ans = []
                 d, p = 0, 0
-                while b:
+                for b in num: # calculation
+                    d, p = 0, 0
+                    while b:
+                        d += (b % 10) * (2 ** p)
+                        b //= 10
+                        p += 1
+                    ans.append(d)
+                print(f"\nThe binary to decimal conversion result is {ans}\n")
+                Recwriter.p9a(num, ans)
+                restart()
+            else:
+                ans = []
+                d, p = 0, 0
+                b = num
+                while b: # calculation
                     d += (b % 10) * (2 ** p)
                     b //= 10
                     p += 1
                 ans.append(d)
-            print(f"\nThe binary to decimal conversion result is {ans}\n")
-            Recwriter.p9a(num, ans)
-            restart()
-        elif isinstance(num, list):
-            ans = []
-            for n in num:
+                print(f"\nThe binary to decimal conversion result is {ans}\n")
+                Recwriter.p9a(num, ans)
+                restart()
+        else:
+            print("\n*syntax error*")
+            print("your lack of intelligence has resulted in errors")
+            dumb_restart()
+    elif dorb == "d":
+        if is_valid_equation(num): # verification
+            num = eval(num)
+            if type(num) == tuple:
+                ans = []
+                for n in num: # calculation
+                    b = ""
+                    while n > 0:
+                        b = str(n % 2) + b
+                        n //= 2
+                    ans.append(b)
+                print(f"\nThe decimal to binary conversion result is {ans}\n")
+                Recwriter.p9b(num, ans)
+                restart()
+            else:
+                ans = []
                 b = ""
-                while num > 0:
+                while num > 0: # calculation
                     b = str(num % 2) + b
                     num //= 2
                 ans.append(b)
-            print(f"\nThe decimal to binary conversion result is {ans}\n")
-            Recwriter.p9b(num, ans)
-            restart()
-
+                print(f"\nThe decimal to binary conversion result is {ans}\n")
+                Recwriter.p9b(num, ans)
+                restart()
+        else:
+            print("\n*syntax error*")
+            print("your lack of intelligence has resulted in errors")
+            dumb_restart()
     else:
         print("\n*syntax error*")
         print("your lack of intelligence has resulted in errors")

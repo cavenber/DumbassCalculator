@@ -1,2 +1,0 @@
-
-Decimal & Binary Conversion (p9): Decimal = 0; Binary = ['00000011']

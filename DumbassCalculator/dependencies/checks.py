@@ -2,9 +2,9 @@
 ###### CHECKS ######
 
 # to verify if the input number is a valid float
-def is_valid_number(ss):
+def is_valid_int(ss):
     try:
-        float(ss)
+        int(ss)
         return True
     except ValueError:
         return False
