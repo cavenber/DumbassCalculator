@@ -1,8 +1,14 @@
 
 ###### MAIN ######
 
+if __name__ == "__main__":
+    print("Error: please execute 'start.py' to start Dumbass Calculator")
+    exit()
+
 def start():
-    print("--------------------------------------------")
+    with open("dependencies/settings.json") as f:
+        settings_info = json.load(f)
+    print("-" * settings_info['line_size'])
     # inputs
     program = input("Please select a program (1-9) ('help' for assistance): ").lower()
     # options (here decides what the user needs to type to get into each program)
@@ -111,7 +117,9 @@ def dumb_restart():
 
 # this shows all the calculations made in a session
 def records():
-    print("\n============================================\n"
+    with open("dependencies/settings.json") as f:
+        settings_info = json.load(f)
+    print(f"\n{'=' * settings_info['line_size']}\n"
         "Calculation Records:")
     with open("dependencies/records.txt", "r") as f:
         print(f.read())
@@ -121,13 +129,22 @@ def settings():
         settings_info = json.load(f)
     while True:
         print("\nSettings")
-        print(f"1: Auto Restart = {settings_info['auto_restart']}\n")
-        change = input("Which setting would you like to change? (1): ").lower()
+        print("default: Restores all settings to default\n"
+              f"1: Auto Restart = {settings_info['auto_restart']}\n"
+              f"2: Line Size = {settings_info['line_size']}\n")
+        change = input("Which setting would you like to change? (1-2): ").lower()
         if change == "stop":
             stop()
         elif change == "back":
             start()
             return
+        elif change == "default":
+            value = input("Are you sure? (y/n): ").lower()
+            if value == "stop":
+                stop()
+            elif value == "back":
+                continue
+            break
         elif change == "1":
             value = input("What would you like to change it to? (true/false): ").lower()
             if value == "stop":
@@ -135,18 +152,47 @@ def settings():
             elif value == "back":
                 continue
             break
+        elif change == "2":
+            value = input("What would you like to change it to? (enter int): ").lower()
+            if value == "stop":
+                stop()
+            elif value == "back":
+                continue
+            break
         else:
             break
-    if change == "1":
+    if change == "default":
+        if value == "y":
+            settings_info['auto_restart'] = "false"
+            settings_info['line_size'] = 44
+            with open("dependencies/settings.json", "w") as f:
+                json.dump(settings_info, f)
+            print("\nAll settings has been restored to default\n")
+            start()
+    elif change == "1":
         if value == "true":
             settings_info['auto_restart'] = "true"
             with open("dependencies/settings.json", "w") as f:
                 json.dump(settings_info, f)
+            print(f"\nAuto Restart has been changed to {settings_info['auto_restart']}\n")
             start()
         elif value == "false":
             settings_info['auto_restart'] = "false"
             with open("dependencies/settings.json", "w") as f:
                 json.dump(settings_info, f)
+            print(f"\nAuto Restart has been changed to {settings_info['auto_restart']}\n")
+            start()
+        else:
+            print("\n*syntax error*")
+            print("your lack of intelligence has resulted in errors")
+            dumb_restart()
+    elif change == "2":
+        if is_valid_int(value):
+            value = int(value)
+            settings_info['line_size'] = value
+            with open("dependencies/settings.json", "w") as f:
+                json.dump(settings_info, f)
+            print(f"\nLine Size has been changed to {settings_info['line_size']}\n")
             start()
         else:
             print("\n*syntax error*")
@@ -159,6 +205,7 @@ def settings():
 
 import sys
 import json
+from .checks import is_valid_int
 from .lobby import variation, arithmetic_or_geometric_s, coordinate_geometry, triangular_calculation, probability_calculation
 from .eggs import credit, ranNumGen, iloveyou
 from calculators.basic_cals import arithmetic_operation, quadratic_equation, set_operation, dec_bin_conversion

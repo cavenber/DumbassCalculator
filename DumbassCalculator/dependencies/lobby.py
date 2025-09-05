@@ -1,6 +1,10 @@
 
 ###### LOBBIES ######
 
+if __name__ == "__main__":
+    print("Error: please execute 'start.py' to start Dumbass Calculator")
+    exit()
+
 # choose a type of variation
 def variation():
     print("\nVariation Calculations\n"

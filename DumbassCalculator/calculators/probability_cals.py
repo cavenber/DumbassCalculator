@@ -1,3 +1,8 @@
+
+if __name__ == "__main__":
+    print("Error: please execute 'start.py' to start Dumbass Calculator")
+    exit()
+
 import math
 import json
 from dependencies.main import stop, restart, dumb_restart

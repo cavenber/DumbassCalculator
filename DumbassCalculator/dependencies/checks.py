@@ -1,6 +1,10 @@
 
 ###### CHECKS ######
 
+if __name__ == "__main__":
+    print("Error: please execute 'start.py' to start Dumbass Calculator")
+    exit()
+
 # to verify if the input number is a valid float
 def is_valid_int(ss):
     try:

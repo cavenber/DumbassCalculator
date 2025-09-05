@@ -1,3 +1,8 @@
+
+if __name__ == "__main__":
+    print("Error: please execute 'start.py' to start Dumbass Calculator")
+    exit()
+
 from dependencies.main import start, stop, restart, dumb_restart
 from dependencies.checks import is_valid_equation
 from dependencies.recwriter import Recwriter

@@ -1,6 +1,10 @@
 
 ###### EASTER EGGS ######
 
+if __name__ == "__main__":
+    print("Error: please execute 'start.py' to start Dumbass Calculator")
+    exit()
+
 def credit():
     with open("dependencies/ne.jpg", "r") as f:
         text = f.read()

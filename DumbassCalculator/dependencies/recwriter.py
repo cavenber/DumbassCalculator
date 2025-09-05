@@ -1,6 +1,10 @@
 
 ###### RECORD WRITER ######
 
+if __name__ == "__main__":
+    print("Error: please execute 'start.py' to start Dumbass Calculator")
+    exit()
+
 class Recwriter:
     # Arithmatic Operation (p1)
     def p1a(equation, ans):
