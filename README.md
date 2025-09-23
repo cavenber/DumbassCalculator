@@ -1,16 +1,16 @@
 # Welcome to Dumbass Calculator
 
-## Dumbass Calculator v12.2.1
+## Dumbass Calculator v13.0
 
 ### Changelog:
 
-Fixed wrong file execution error not working on calculation files
+Updated p1 to allow for % (remainder), sqrt, radians, sin, cos, tan and log math expressions
 
-Fixed error message not appearing for Line Size setting when entering a non-integer
+Added new Caesar Cipher Encoder (p10)
 
 ### About:
 
-This is a personal project that I used to help make math easier to understand and use in my daily life. Feel free to use it if you find it useful :)
+This is a personal project that I used to help make math easier to understand and use in my daily life. Feel free to use it if you find it helpful :)
 
 ### How to Use Dumbass Calculator:
 
