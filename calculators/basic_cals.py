@@ -1,22 +1,24 @@
+from pickle import GLOBAL
 
 if __name__ == "__main__":
     print("Error: please execute 'start.py' to start Dumbass Calculator")
     exit()
 
+import math
 from dependencies.main import start, stop, restart, dumb_restart
-from dependencies.checks import is_valid_equation
+from dependencies.checks import is_valid_int, is_valid_equation
 from dependencies.recwriter import Recwriter
 
 def arithmetic_operation():
     print("\nArithmetic Operation")
     # inputs
-    equation = input("Please enter your calculation ('help' for assistance): ").lower()
-    if equation == "stop":
+    equationIn = input("Please enter your calculation ('help' for assistance): ").lower()
+    if equationIn == "stop":
         stop()
-    elif equation == "back":
+    elif equationIn == "back":
         start()
         return
-    elif equation == "help":
+    elif equationIn == "help":
         print("\nEnter any calculation within syntax:\n"
             "+ = Addition\n"
             "- = Subtraction\n"
@@ -25,17 +27,21 @@ def arithmetic_operation():
             "** = Exponentiation\n"
             "() can also be used\n")
         arithmetic_operation()
-    elif equation == "2 + 2": # Radiohead reference
+    elif equationIn in ["2 + 2", "2+2", "2 +2", "2+ 2"]: # Radiohead reference
         ans = 5
         print(f"\nResult of the entered calculation is {ans} due to the Radiohead song '2 + 2 = 5'\n")
-        Recwriter.p1a(equation, ans)
+        Recwriter.p1a("2 + 2", ans)
         restart()
     # verifications
-    elif is_valid_equation(equation):
+    elif is_valid_equation(equationIn):
+        equation = equationIn
+        math_functions = ['sqrt', 'radians', 'sin', 'cos', 'tan', 'log']
+        for func in math_functions:
+            equation = equation.replace(func, f'math.{func}')
         # calculations
-        ans = eval(equation)
+        ans = eval(equation, {"__builtins__": {}, "math": math})
         print(f"\nResult of the entered calculation is {ans}\n")
-        Recwriter.p1a(equation, ans)
+        Recwriter.p1a(equationIn, ans)
         restart()
     else:
         print("\n*syntax error*")
@@ -212,6 +218,41 @@ def dec_bin_conversion():
             print("\n*syntax error*")
             print("your lack of intelligence has resulted in errors")
             dumb_restart()
+    else:
+        print("\n*syntax error*")
+        print("your lack of intelligence has resulted in errors")
+        dumb_restart()
+
+def caesar_cipher_encoder():
+    while True:
+        print("\nCaesar Cipher Encoder")
+        # input
+        textIn = input("Please enter your text: ").lower()
+        if textIn == "stop":
+            stop()
+        elif textIn == "back":
+            start()
+            return
+        shift = input("Please enter the amount of shifts: ").lower()
+        if shift == "stop":
+            stop()
+        elif shift == "back":
+            continue
+        break
+    if is_valid_int(shift):
+        shift = int(shift)
+        text = list(textIn)
+        temp = []
+        for i in text:
+            if i == ' ':
+                temp.append(i)
+            else:
+                p = ord(i) - 97
+                temp.append(chr(((p + shift) % 26) + 97))
+        cipher = "".join(temp)
+        print(f"\nThe coded message is '{cipher}'\n")
+        Recwriter.p10a(textIn, shift, cipher)
+        restart()
     else:
         print("\n*syntax error*")
         print("your lack of intelligence has resulted in errors")

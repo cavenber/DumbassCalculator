@@ -15,14 +15,18 @@ def is_valid_int(ss):
 
 # to verify if the input string is a valid equation
 def is_valid_equation(ss):
-    pattern = r"^[\d\s+\-*/(),.]+$"
+    pattern = r'^[\d\s+\-*/%(),.]*(?:\b(sqrt|radians|sin|cos|tan|log)\s*\([^)]*\)\s*)*[\d\s+\-*/%(),.]*$'
     if re.match(pattern, ss):
+        math_functions = ['sqrt', 'radians', 'sin', 'cos', 'tan', 'log']
+        for func in math_functions:
+            ss = ss.replace(func, f'math.{func}')
         try:
-            eval(ss)
+            eval(ss, {"__builtins__": {}, "math": math})
             return True
-        except (ZeroDivisionError, SyntaxError, ValueError, TypeError):
+        except (ZeroDivisionError, SyntaxError, ValueError, TypeError, AttributeError):
             return False
     else:
         return False
 
 import re
+import math

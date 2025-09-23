@@ -160,12 +160,17 @@ class Recwriter:
     def p8c(a, b, ans):
         with open("dependencies/records.txt", "a") as f:
             f.write(f"\nSet Operation (p8): The difference of {a} and {b}; x = {ans}\n")
+    # Decimal & Binary Conversion
     def p9a(num, ans):
         with open("dependencies/records.txt", "a") as f:
             f.write(f"\nDecimal & Binary Conversion (p9): Binary = {num}; Decimal = {ans}\n")
     def p9b(num, ans):
         with open("dependencies/records.txt", "a") as f:
             f.write(f"\nDecimal & Binary Conversion (p9): Decimal = {num}; Binary = {ans}\n")
+    # Caesar Cipher Encoder
+    def p10a(text, shift, cipher):
+        with open("dependencies/records.txt", "a") as f:
+            f.write(f"\nCaesar Cipher Encoder (p10): Input Text = '{text}', Shifts = {shift}; Cipher = '{cipher}'\n")
 
 class Eggmarker:
     def ranNumWrite(num, ranNum):

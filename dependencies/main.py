@@ -10,7 +10,7 @@ def start():
         settings_info = json.load(f)
     print("-" * settings_info['line_size'])
     # inputs
-    program = input("Please select a program (1-9) ('help' for assistance): ").lower()
+    program = input("Please select a program (1-10) ('help' for assistance): ").lower()
     # options (here decides what the user needs to type to get into each program)
     if program == "stop":
         stop()
@@ -39,6 +39,7 @@ def start():
             "7: Probability Calculation\n"
             "8: Set Operation\n"
             "9: Decimal & Binary Conversion\n"
+            "10: Caesar Cipher Encoder\n"
             "\nFunctions:\n"
             "setting: Configure Dumbass Calculator\n"
             "rng: Random Number Generator\n"
@@ -73,6 +74,8 @@ def start():
         set_operation()
     elif program == "9":
         dec_bin_conversion()
+    elif program == "10":
+        caesar_cipher_encoder()
     else:
         print("\nthe program you selected does not exist, please check your intelligence and try again")
         dumb_restart()
@@ -208,4 +211,4 @@ import json
 from .checks import is_valid_int
 from .lobby import variation, arithmetic_or_geometric_s, coordinate_geometry, triangular_calculation, probability_calculation
 from .eggs import credit, ranNumGen, iloveyou
-from calculators.basic_cals import arithmetic_operation, quadratic_equation, set_operation, dec_bin_conversion
+from calculators.basic_cals import arithmetic_operation, quadratic_equation, set_operation, dec_bin_conversion, caesar_cipher_encoder
