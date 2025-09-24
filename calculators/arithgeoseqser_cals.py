@@ -5,7 +5,7 @@ if __name__ == "__main__":
 
 import math
 from dependencies.main import stop, restart, dumb_restart
-from dependencies.checks import is_valid_equation
+from dependencies.checks import is_valid_expression
 from dependencies.lobby import arithmetic_or_geometric_s
 from dependencies.recwriter import Recwriter
 
@@ -36,7 +36,7 @@ def arithmetic_sequence():
             continue
         break
     # verifications
-    if is_valid_equation(t1) and is_valid_equation(t2) and is_valid_equation(n): # given T(1), T(2) and n
+    if is_valid_expression(t1) and is_valid_expression(t2) and is_valid_expression(n): # given T(1), T(2) and n
         t1 = eval(t1)
         t2 = eval(t2)
         n = eval(n)
@@ -48,7 +48,7 @@ def arithmetic_sequence():
         Recwriter.asqp4a(t1, t2, n, tn)
         restart()
     # verifications
-    elif is_valid_equation(t1) and is_valid_equation(t2) and is_valid_equation(tn): # given T(1), T(2) and T(n)
+    elif is_valid_expression(t1) and is_valid_expression(t2) and is_valid_expression(tn): # given T(1), T(2) and T(n)
         t1 = eval(t1)
         t2 = eval(t2)
         tn = eval(tn)
@@ -59,7 +59,7 @@ def arithmetic_sequence():
         print(f"n = {n}")
         Recwriter.asqp4b(t1, t2, tn, n)
         restart()
-    elif is_valid_equation(t1) and is_valid_equation(t2): # only T(1) and T(2) are provided
+    elif is_valid_expression(t1) and is_valid_expression(t2): # only T(1) and T(2) are provided
         t1 = eval(t1)
         t2 = eval(t2)
         # calculations
@@ -107,7 +107,7 @@ def arithmetic_series():
             continue
         break
     # verifications
-    if is_valid_equation(t1) and is_valid_equation(t2) and is_valid_equation(n): # given T(1), T(2) and n
+    if is_valid_expression(t1) and is_valid_expression(t2) and is_valid_expression(n): # given T(1), T(2) and n
         t1 = eval(t1)
         t2 = eval(t2)
         n = eval(n)
@@ -119,7 +119,7 @@ def arithmetic_series():
         Recwriter.asrp4a(t1, t2, n, sn)
         restart()
     # verifications
-    elif is_valid_equation(t1) and is_valid_equation(t2) and is_valid_equation(tn): # given T(1), T(2) and T(n)
+    elif is_valid_expression(t1) and is_valid_expression(t2) and is_valid_expression(tn): # given T(1), T(2) and T(n)
         t1 = eval(t1)
         t2 = eval(t2)
         tn = eval(tn)
@@ -165,7 +165,7 @@ def geometric_sequence():
             continue
         break
     # verifications
-    if is_valid_equation(t1) and is_valid_equation(t2) and is_valid_equation(n): # given T(1), T(2) and n
+    if is_valid_expression(t1) and is_valid_expression(t2) and is_valid_expression(n): # given T(1), T(2) and n
         t1 = eval(t1)
         t2 = eval(t2)
         n = eval(n)
@@ -177,7 +177,7 @@ def geometric_sequence():
         Recwriter.gsqp4a(t1, t2, n, tn)
         restart()
     # verifications
-    elif is_valid_equation(t1) and is_valid_equation(t2) and is_valid_equation(tn): # given T(1), T(2) and T(n)
+    elif is_valid_expression(t1) and is_valid_expression(t2) and is_valid_expression(tn): # given T(1), T(2) and T(n)
         t1 = eval(t1)
         t2 = eval(t2)
         tn = eval(tn)
@@ -222,7 +222,7 @@ def geometric_series():
             continue
         break
     # verifications
-    if is_valid_equation(t1) and is_valid_equation(t2) and is_valid_equation(n): # given T(1), T(2) and n
+    if is_valid_expression(t1) and is_valid_expression(t2) and is_valid_expression(n): # given T(1), T(2) and n
         t1 = eval(t1)
         t2 = eval(t2)
         n = eval(n)
@@ -234,7 +234,7 @@ def geometric_series():
         Recwriter.gsrp4a(t1, t2, n, sn)
         restart()
     # verifications
-    elif is_valid_equation(t1) and is_valid_equation(t2) and is_valid_equation(tn): # given T(1), T(2) and T(n)
+    elif is_valid_expression(t1) and is_valid_expression(t2) and is_valid_expression(tn): # given T(1), T(2) and T(n)
         t1 = eval(t1)
         t2 = eval(t2)
         tn = eval(tn)

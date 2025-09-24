@@ -6,7 +6,7 @@ if __name__ == "__main__":
 
 import math
 from dependencies.main import start, stop, restart, dumb_restart
-from dependencies.checks import is_valid_int, is_valid_equation
+from dependencies.checks import is_valid_int, is_valid_expression, is_valid_equation
 from dependencies.recwriter import Recwriter
 
 def arithmetic_operation():
@@ -70,7 +70,7 @@ def quadratic_equation():
             continue
         break
     # verifications
-    if is_valid_equation(a) and is_valid_equation(b) and is_valid_equation(c):
+    if is_valid_expression(a) and is_valid_expression(b) and is_valid_expression(c):
         a = eval(a)
         b = eval(b)
         c = eval(c)
@@ -119,7 +119,7 @@ def set_operation():
         elif b == "back":
             continue
         break
-    if is_valid_equation(a) and is_valid_equation(b) and op in ("u", "i", "d"): # verification
+    if is_valid_expression(a) and is_valid_expression(b) and op in ("u", "i", "d"): # verification
         a = eval(a)
         b = eval(b)
         if op == "u": # calculation
@@ -159,7 +159,7 @@ def dec_bin_conversion():
             continue
         break
     if dorb == "b":
-        if is_valid_equation(num): # verification
+        if is_valid_expression(num): # verification
             num = eval(num)
             if type(num) == tuple:
                 ans = []
@@ -191,7 +191,7 @@ def dec_bin_conversion():
             print("your lack of intelligence has resulted in errors")
             dumb_restart()
     elif dorb == "d":
-        if is_valid_equation(num): # verification
+        if is_valid_expression(num): # verification
             num = eval(num)
             if type(num) == tuple:
                 ans = []

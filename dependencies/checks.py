@@ -13,6 +13,17 @@ def is_valid_int(ss):
     except ValueError:
         return False
 
+def is_valid_expression(ss):
+    pattern = r"^[\d\s+\-*/%(),.]+\**$"
+    if re.match(pattern, ss):
+        try:
+            eval(ss, {"__builtins__": {}, "math": math})
+            return True
+        except (ZeroDivisionError, SyntaxError, ValueError, TypeError, AttributeError):
+            return False
+    else:
+        return False
+
 # to verify if the input string is a valid equation
 def is_valid_equation(ss):
     pattern = r'^[\d\s+\-*/%(),.]*(?:\b(sqrt|radians|sin|cos|tan|log)\s*\([^)]*\)\s*)*[\d\s+\-*/%(),.]*$'

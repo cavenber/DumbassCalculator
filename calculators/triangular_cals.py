@@ -5,7 +5,7 @@ if __name__ == "__main__":
 
 import math
 from dependencies.main import stop, restart, dumb_restart
-from dependencies.checks import is_valid_equation
+from dependencies.checks import is_valid_expression
 from dependencies.lobby import triangular_calculation
 from dependencies.recwriter import Recwriter
 
@@ -31,7 +31,7 @@ def pythagorean_theorem():
             continue
         break
     # verifications
-    if is_valid_equation(a) and is_valid_equation(b):
+    if is_valid_expression(a) and is_valid_expression(b):
         a = eval(a)
         b = eval(b)
         # calculations
@@ -40,7 +40,7 @@ def pythagorean_theorem():
         Recwriter.ptp6a(a, b, c)
         restart()
     # verifications
-    elif is_valid_equation(a) and is_valid_equation(c):
+    elif is_valid_expression(a) and is_valid_expression(c):
         a = eval(a)
         c = eval(c)
         # calculations
@@ -49,7 +49,7 @@ def pythagorean_theorem():
         Recwriter.ptp6b(a, c, b)
         restart()
     # verifications
-    elif is_valid_equation(b) and is_valid_equation(c):
+    elif is_valid_expression(b) and is_valid_expression(c):
         b = eval(b)
         c = eval(c)
         # calculations
@@ -89,7 +89,7 @@ def sine_formula():
             continue
         break
     # verifications
-    if is_valid_equation(inA) and is_valid_equation(ina) and is_valid_equation(inB):
+    if is_valid_expression(inA) and is_valid_expression(ina) and is_valid_expression(inB):
         A = eval(inA)
         a = eval(ina)
         B = eval(inB)
@@ -101,7 +101,7 @@ def sine_formula():
         Recwriter.sfp6a(inA, ina, inB, b)
         restart()
     # verifications
-    elif is_valid_equation(inA) and is_valid_equation(ina) and is_valid_equation(inb):
+    elif is_valid_expression(inA) and is_valid_expression(ina) and is_valid_expression(inb):
         A = eval(inA)
         a = eval(ina)
         b = eval(inb)
@@ -144,7 +144,7 @@ def cosine_formula():
             continue
         break
     # verifications
-    if is_valid_equation(ina) and is_valid_equation(inb) and is_valid_equation(inC):
+    if is_valid_expression(ina) and is_valid_expression(inb) and is_valid_expression(inC):
         a = eval(ina)
         b = eval(inb)
         C = eval(inC)
@@ -155,7 +155,7 @@ def cosine_formula():
         Recwriter.cfp6a(ina, inb, inC, c)
         restart()
     # verifications
-    elif is_valid_equation(ina) and is_valid_equation(inb) and is_valid_equation(inc):
+    elif is_valid_expression(ina) and is_valid_expression(inb) and is_valid_expression(inc):
         a = eval(ina)
         b = eval(inb)
         c = eval(inc)

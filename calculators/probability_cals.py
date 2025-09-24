@@ -6,7 +6,7 @@ if __name__ == "__main__":
 import math
 import json
 from dependencies.main import stop, restart, dumb_restart
-from dependencies.checks import is_valid_equation
+from dependencies.checks import is_valid_expression
 from dependencies.lobby import probability_calculation
 from dependencies.recwriter import Recwriter
 
@@ -32,7 +32,7 @@ def expected_value():
             elif inprob == "back":
                 continue
             break
-        if is_valid_equation(invalue) and is_valid_equation(inprob): # verifications
+        if is_valid_expression(invalue) and is_valid_expression(inprob): # verifications
             value = eval(invalue)
             prob = eval(inprob)
             # calculations
@@ -87,7 +87,7 @@ def binomial_distribution():
             continue
         break
     # verifications
-    if is_valid_equation(inn) and is_valid_equation(inx) and is_valid_equation(inp) and ins == "=":
+    if is_valid_expression(inn) and is_valid_expression(inx) and is_valid_expression(inp) and ins == "=":
         n = eval(inn)
         x = eval(inx)
         p = eval(inp)
@@ -101,7 +101,7 @@ def binomial_distribution():
             print("\nthe desired outcome cannot be greater than the number of trials")
             dumb_restart()
     # verifications
-    elif is_valid_equation(inn) and is_valid_equation(inx) and is_valid_equation(inp) and ins == ">":
+    elif is_valid_expression(inn) and is_valid_expression(inx) and is_valid_expression(inp) and ins == ">":
         n = eval(inn)
         x = eval(inx)
         p = eval(inp)
@@ -118,7 +118,7 @@ def binomial_distribution():
             print("\nthe desired outcome cannot be greater than the number of trials")
             dumb_restart()
     # verifications
-    elif is_valid_equation(inn) and is_valid_equation(inx) and is_valid_equation(inp) and ins == ">=":
+    elif is_valid_expression(inn) and is_valid_expression(inx) and is_valid_expression(inp) and ins == ">=":
         n = eval(inn)
         x = eval(inx)
         p = eval(inp)
@@ -135,7 +135,7 @@ def binomial_distribution():
             print("\nthe desired outcome cannot be greater than the number of trials")
             dumb_restart()
     # verifications
-    elif is_valid_equation(inn) and is_valid_equation(inx) and is_valid_equation(inp) and ins == "<":
+    elif is_valid_expression(inn) and is_valid_expression(inx) and is_valid_expression(inp) and ins == "<":
         n = eval(inn)
         x = eval(inx)
         p = eval(inp)
@@ -153,7 +153,7 @@ def binomial_distribution():
             print("\nthe desired outcome cannot be greater than the number of trials")
             dumb_restart()
     # verifications
-    elif is_valid_equation(inn) and is_valid_equation(inx) and is_valid_equation(inp) and ins == "<=":
+    elif is_valid_expression(inn) and is_valid_expression(inx) and is_valid_expression(inp) and ins == "<=":
         n = eval(inn)
         x = eval(inx)
         p = eval(inp)
@@ -196,7 +196,7 @@ def poisson_distribution():
             continue
         break
     # verifications
-    if is_valid_equation(inl) and is_valid_equation(inx) and ins == "=":
+    if is_valid_expression(inl) and is_valid_expression(inx) and ins == "=":
         l = eval(inl)
         x = eval(inx)
         # calculations
@@ -205,7 +205,7 @@ def poisson_distribution():
         Recwriter.pdp7a(inl, ins, inx, P)
         restart()
     # verifications
-    elif is_valid_equation(inl) and is_valid_equation(inx) and ins == ">":
+    elif is_valid_expression(inl) and is_valid_expression(inx) and ins == ">":
         l = eval(inl)
         x = eval(inx)
         # calculations
@@ -218,7 +218,7 @@ def poisson_distribution():
         Recwriter.pdp7a(inl, ins, inx, P)
         restart()
     # verifications
-    elif is_valid_equation(inl) and is_valid_equation(inx) and ins == ">=":
+    elif is_valid_expression(inl) and is_valid_expression(inx) and ins == ">=":
         l = eval(inl)
         x = eval(inx)
         # calculations
@@ -232,7 +232,7 @@ def poisson_distribution():
         Recwriter.pdp7a(inl, ins, inx, P)
         restart()
     # verifications
-    elif is_valid_equation(inl) and is_valid_equation(inx) and ins == "<":
+    elif is_valid_expression(inl) and is_valid_expression(inx) and ins == "<":
         l = eval(inl)
         x = eval(inx)
         # calculations
@@ -245,7 +245,7 @@ def poisson_distribution():
         Recwriter.pdp7a(inl, ins, inx, P)
         restart()
     # verifications
-    elif is_valid_equation(inl) and is_valid_equation(inx) and ins == "<=":
+    elif is_valid_expression(inl) and is_valid_expression(inx) and ins == "<=":
         l = eval(inl)
         x = eval(inx)
         # calculations
@@ -288,7 +288,7 @@ def normal_distribution():
             continue
         break
     # verifications
-    if is_valid_equation(innx) and is_valid_equation(inxn) and is_valid_equation(inm) and is_valid_equation(ins):
+    if is_valid_expression(innx) and is_valid_expression(inxn) and is_valid_expression(inm) and is_valid_expression(ins):
         nx = eval(innx)
         xn = eval(inxn)
         m = eval(inm)
@@ -308,7 +308,7 @@ def normal_distribution():
         Recwriter.ndp7c(innx, inxn, inm, ins, ans)
         restart()
     # verifications
-    elif is_valid_equation(innx) and is_valid_equation(inm) and is_valid_equation(ins):
+    elif is_valid_expression(innx) and is_valid_expression(inm) and is_valid_expression(ins):
         nx = eval(innx)
         m = eval(inm)
         s = eval(ins)
@@ -325,7 +325,7 @@ def normal_distribution():
         Recwriter.ndp7a(innx, inm, ins, ans)
         restart()
     # verifications
-    elif is_valid_equation(inxn) and is_valid_equation(inm) and is_valid_equation(ins):
+    elif is_valid_expression(inxn) and is_valid_expression(inm) and is_valid_expression(ins):
         xn = eval(inxn)
         m = eval(inm)
         s = eval(ins)

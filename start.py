@@ -13,7 +13,7 @@ title = r"""
 :\___/\_,_/_/\__/\_,_/_/\_,_/\__/\___/_/   :
 ············································
 """
-version = "version 13.0"
+version = "version 13.0.1"
 if __name__ == "__main__":
     print(title)
     print(version)

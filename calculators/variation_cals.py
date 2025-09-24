@@ -4,7 +4,7 @@ if __name__ == "__main__":
     exit()
 
 from dependencies.main import stop, restart, dumb_restart
-from dependencies.checks import is_valid_equation
+from dependencies.checks import is_valid_expression
 from dependencies.lobby import variation, joint_variation
 from dependencies.recwriter import Recwriter
 
@@ -25,7 +25,7 @@ def direct_variation():
             continue
         break
     # verifications
-    if is_valid_equation(x) and is_valid_equation(y):
+    if is_valid_expression(x) and is_valid_expression(y):
         x = eval(x)
         y = eval(y)
         # calculations
@@ -51,14 +51,14 @@ def direct_variation():
                     continue
                 break
             # verifications
-            if is_valid_equation(x):
+            if is_valid_expression(x):
                 x = eval(x)
                 # calculations
                 y = k * x
                 print(f"\ny = {y}\n")
                 Recwriter.dvp3b(y, k, x)
                 restart()
-            elif is_valid_equation(y):
+            elif is_valid_expression(y):
                 y = eval(y)
                 # calculations
                 x = y / k
@@ -98,7 +98,7 @@ def inverse_variation():
             continue
         break
     # verifications
-    if is_valid_equation(x) and is_valid_equation(y):
+    if is_valid_expression(x) and is_valid_expression(y):
         x = eval(x)
         y = eval(y)
         # calculations
@@ -124,14 +124,14 @@ def inverse_variation():
                     continue
                 break
             #verifications
-            if is_valid_equation(x):
+            if is_valid_expression(x):
                 x = eval(x)
                 # calculations
                 y = k / x
                 print(f"\ny = {y}\n")
                 Recwriter.ivp3b(y, k, x)
                 restart()
-            elif is_valid_equation(y):
+            elif is_valid_expression(y):
                 y = eval(y)
                 # calculations
                 x = k / y
@@ -176,7 +176,7 @@ def joint_variation_form1():
             continue
         break
     # verifications
-    if is_valid_equation(x) and is_valid_equation(y) and is_valid_equation(z):
+    if is_valid_expression(x) and is_valid_expression(y) and is_valid_expression(z):
         x = eval(x)
         y = eval(y)
         z = eval(z)
@@ -204,7 +204,7 @@ def joint_variation_form1():
                     continue
                 break
             # verifications
-            if is_valid_equation(x) and is_valid_equation(y):
+            if is_valid_expression(x) and is_valid_expression(y):
                 x = eval(x)
                 y = eval(y)
                 # calculations
@@ -251,7 +251,7 @@ def joint_variation_form2():
             continue
         break
     # verifications
-    if is_valid_equation(x) and is_valid_equation(y) and is_valid_equation(z):
+    if is_valid_expression(x) and is_valid_expression(y) and is_valid_expression(z):
         x = eval(x)
         y = eval(y)
         z = eval(z)
@@ -279,7 +279,7 @@ def joint_variation_form2():
                     continue
                 break
             # verifications
-            if is_valid_equation(x) and is_valid_equation(y):
+            if is_valid_expression(x) and is_valid_expression(y):
                 x = eval(x)
                 y = eval(y)
                 # calculations

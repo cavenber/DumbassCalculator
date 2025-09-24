@@ -4,7 +4,7 @@ if __name__ == "__main__":
     exit()
 
 from dependencies.main import stop, restart, dumb_restart
-from dependencies.checks import is_valid_equation
+from dependencies.checks import is_valid_expression
 from dependencies.lobby import coordinate_geometry
 from dependencies.recwriter import Recwriter
 
@@ -25,7 +25,7 @@ def midpoint_formula():
             continue
         break
     # verifications
-    if is_valid_equation(a) and is_valid_equation(b):
+    if is_valid_expression(a) and is_valid_expression(b):
         a = eval(a)
         b = eval(b)
         # calculations
@@ -55,7 +55,7 @@ def line_slope():
             continue
         break
     # verifications
-    if is_valid_equation(a) and is_valid_equation(b):
+    if is_valid_expression(a) and is_valid_expression(b):
         a = eval(a)
         b = eval(b)
         # calculations
@@ -89,7 +89,7 @@ def line_equation():
             continue
         break
     # verifications
-    if is_valid_equation(a) and is_valid_equation(b):
+    if is_valid_expression(a) and is_valid_expression(b):
         a = eval(a)
         b = eval(b)
         # calculations
@@ -119,13 +119,13 @@ def line_equation():
                     elif y == "back":
                         continue
                     break
-                if is_valid_equation(x):
+                if is_valid_expression(x):
                     x = eval(x)
                     y = m * x + c
                     print(f"\ny = {y}\n")
                     Recwriter.lep5b(a, b, m, cs, cx, x, y)
                     restart()
-                elif is_valid_equation(y):
+                elif is_valid_expression(y):
                     y = eval(y)
                     x = (y - c) / m
                     print(f"\nx = {x}\n")
@@ -168,7 +168,7 @@ def distance_formula():
             continue
         break
     # verifications
-    if is_valid_equation(a) and is_valid_equation(b):
+    if is_valid_expression(a) and is_valid_expression(b):
         a = eval(a)
         b = eval(b)
         # calculations
