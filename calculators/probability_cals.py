@@ -11,6 +11,8 @@ from dependencies.lobby import probability_calculation
 from dependencies.recwriter import Recwriter
 
 def expected_value():
+    with open("dependencies/answers.json", "r") as f:
+        answers = json.load(f)
     exp_value_list = []
     prob_sum = []
     value_list = []
@@ -32,6 +34,10 @@ def expected_value():
             elif inprob == "back":
                 continue
             break
+        if "(ans)" in invalue:
+            invalue = invalue.replace("ans", answers["ans"])
+        if "(ans)" in inprob:
+            inprob = inprob.replace("ans", answers["ans"])
         if is_valid_expression(invalue) and is_valid_expression(inprob): # verifications
             value = eval(invalue)
             prob = eval(inprob)
@@ -57,10 +63,15 @@ def expected_value():
     print(f"\nValues: {value_list}")
     print(f"Probabilities: {prob_list}")
     print(f"Expected Value = {exp_value}\n")
+    answers["ans"] = str(exp_value)
+    with open("dependencies/answers.json", "w") as f:
+        json.dump(answers, f)
     Recwriter.evp7a(value_list, prob_list, exp_value)
     restart()
 
 def binomial_distribution():
+    with open("dependencies/answers.json", "r") as f:
+        answers = json.load(f)
     while True:
         print("\nBinomial Distribution")
         # inputs
@@ -86,6 +97,12 @@ def binomial_distribution():
         elif inp == "back":
             continue
         break
+    if "(ans)" in inn:
+        inn = inn.replace("ans", answers["ans"])
+    if "(ans)" in inx:
+        inx = inx.replace("ans", answers["ans"])
+    if "(ans)" in inp:
+        inp = inp.replace("ans", answers["ans"])
     # verifications
     if is_valid_expression(inn) and is_valid_expression(inx) and is_valid_expression(inp) and ins == "=":
         n = eval(inn)
@@ -95,6 +112,9 @@ def binomial_distribution():
         if n >= x:
             P = math.comb(n, x) * (p ** x) * ((1 - p) ** (n - x))
             print(f"\nP(X{ins}{inx}) = {P}\n")
+            answers["ans"] = str(P)
+            with open("dependencies/answers.json", "w") as f:
+                json.dump(answers, f)
             Recwriter.bdp7a(inn, ins, inx, inp, P)
             restart()
         else:
@@ -112,6 +132,9 @@ def binomial_distribution():
                 P += math.comb(n, x) * (p ** x) * ((1 - p) ** (n - x))
                 x += 1
             print(f"\nP(X{ins}{inx}) = {P}\n")
+            answers["ans"] = str(P)
+            with open("dependencies/answers.json", "w") as f:
+                json.dump(answers, f)
             Recwriter.bdp7a(inn, ins, inx, inp, P)
             restart()
         else:
@@ -129,6 +152,9 @@ def binomial_distribution():
                 P += math.comb(n, x) * (p ** x) * ((1 - p) ** (n - x))
                 x += 1
             print(f"\nP(X{ins}{inx}) = {P}\n")
+            answers["ans"] = str(P)
+            with open("dependencies/answers.json", "w") as f:
+                json.dump(answers, f)
             Recwriter.bdp7a(inn, ins, inx, inp, P)
             restart()
         else:
@@ -147,6 +173,9 @@ def binomial_distribution():
                 P += math.comb(n, x) * (p ** x) * ((1 - p) ** (n - x))
                 x -= 1
             print(f"\nP(X{ins}{inx}) = {P}\n")
+            answers["ans"] = str(P)
+            with open("dependencies/answers.json", "w") as f:
+                json.dump(answers, f)
             Recwriter.bdp7a(inn, ins, inx, inp, P)
             restart()
         else:
@@ -164,6 +193,9 @@ def binomial_distribution():
                 P += math.comb(n, x) * (p ** x) * ((1 - p) ** (n - x))
                 x -= 1
             print(f"\nP(X{ins}{inx}) = {P}\n")
+            answers["ans"] = str(P)
+            with open("dependencies/answers.json", "w") as f:
+                json.dump(answers, f)
             Recwriter.bdp7a(inn, ins, inx, inp, P)
             restart()
         else:
@@ -175,6 +207,8 @@ def binomial_distribution():
         dumb_restart()
 
 def poisson_distribution():
+    with open("dependencies/answers.json", "r") as f:
+        answers = json.load(f)
     while True:
         print("\nPoisson Distribution")
         # inputs
@@ -195,6 +229,10 @@ def poisson_distribution():
         elif inx == "back":
             continue
         break
+    if "(ans)" in inl:
+        inl = inl.replace("ans", answers["ans"])
+    if "(ans)" in inx:
+        inx = inx.replace("ans", answers["ans"])
     # verifications
     if is_valid_expression(inl) and is_valid_expression(inx) and ins == "=":
         l = eval(inl)
@@ -202,6 +240,9 @@ def poisson_distribution():
         # calculations
         P = math.exp(-l) * ((l ** x) / (math.factorial(x)))
         print(f"\nP(X{ins}{inx}) = {P}\n")
+        answers["ans"] = str(P)
+        with open("dependencies/answers.json", "w") as f:
+            json.dump(answers, f)
         Recwriter.pdp7a(inl, ins, inx, P)
         restart()
     # verifications
@@ -215,6 +256,9 @@ def poisson_distribution():
             x -= 1
         P = 1 - P
         print(f"\nP(X{ins}{inx}) = {P}\n")
+        answers["ans"] = str(P)
+        with open("dependencies/answers.json", "w") as f:
+            json.dump(answers, f)
         Recwriter.pdp7a(inl, ins, inx, P)
         restart()
     # verifications
@@ -229,6 +273,9 @@ def poisson_distribution():
             x -= 1
         P = 1 - P
         print(f"\nP(X{ins}{inx}) = {P}\n")
+        answers["ans"] = str(P)
+        with open("dependencies/answers.json", "w") as f:
+            json.dump(answers, f)
         Recwriter.pdp7a(inl, ins, inx, P)
         restart()
     # verifications
@@ -242,6 +289,9 @@ def poisson_distribution():
             P += math.exp(-l) * ((l ** x) / (math.factorial(x)))
             x -= 1
         print(f"\nP(X{ins}{inx}) = {P}\n")
+        answers["ans"] = str(P)
+        with open("dependencies/answers.json", "w") as f:
+            json.dump(answers, f)
         Recwriter.pdp7a(inl, ins, inx, P)
         restart()
     # verifications
@@ -254,6 +304,9 @@ def poisson_distribution():
             P += math.exp(-l) * ((l ** x) / (math.factorial(x)))
             x -= 1
         print(f"\nP(X{ins}{inx}) = {P}\n")
+        answers["ans"] = str(P)
+        with open("dependencies/answers.json", "w") as f:
+            json.dump(answers, f)
         Recwriter.pdp7a(inl, ins, inx, P)
         restart()
     else:
@@ -262,6 +315,8 @@ def poisson_distribution():
         dumb_restart()
 
 def normal_distribution():
+    with open("dependencies/answers.json", "r") as f:
+        answers = json.load(f)
     while True:
         print("\nNormal Distribution")
         # inputs
@@ -287,6 +342,14 @@ def normal_distribution():
         elif ins == "back":
             continue
         break
+    if "(ans)" in innx:
+        innx = innx.replace("ans", answers["ans"])
+    if "(ans)" in inxn:
+        inxn = inxn.replace("ans", answers["ans"])
+    if "(ans)" in inm:
+        inm = inm.replace("ans", answers["ans"])
+    if "(ans)" in ins:
+        ins = ins.replace("ans", answers["ans"])
     # verifications
     if is_valid_expression(innx) and is_valid_expression(inxn) and is_valid_expression(inm) and is_valid_expression(ins):
         nx = eval(innx)
@@ -305,6 +368,9 @@ def normal_distribution():
         else:
             ans = z_table[f"{zn:.2f}"] + z_table[f"{-nz:.2f}"]
         print(f"\nP({innx}<X<{inxn}) = {ans}\n")
+        answers["ans"] = str(ans)
+        with open("dependencies/answers.json", "w") as f:
+            json.dump(answers, f)
         Recwriter.ndp7c(innx, inxn, inm, ins, ans)
         restart()
     # verifications
@@ -322,6 +388,9 @@ def normal_distribution():
             zn = -zn
             ans = 0.5 + z_table[f"{zn:.2f}"]
         print(f"\nP(X>{innx}) = {ans}\n")
+        answers["ans"] = str(ans)
+        with open("dependencies/answers.json", "w") as f:
+            json.dump(answers, f)
         Recwriter.ndp7a(innx, inm, ins, ans)
         restart()
     # verifications
@@ -339,6 +408,9 @@ def normal_distribution():
             zn = -zn
             ans = 0.5 - z_table[f"{zn:.2f}"]
         print(f"\nP(X<{inxn}) = {ans}\n")
+        answers["ans"] = str(ans)
+        with open("dependencies/answers.json", "w") as f:
+            json.dump(answers, f)
         Recwriter.ndp7b(inxn, inm, ins, ans)
         restart()
     else:

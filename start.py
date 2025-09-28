@@ -13,11 +13,14 @@ title = r"""
 :\___/\_,_/_/\__/\_,_/_/\_,_/\__/\___/_/   :
 ············································
 """
-version = "version 13.0.1"
+version = "version 14.0"
 if __name__ == "__main__":
     print(title)
     print(version)
+    import json
     from dependencies.main import start
     with open("dependencies/records.txt", "w") as f:
         f.write("")
+    with open("dependencies/answers.json", "w") as f:
+        json.dump({"ans": "0"}, f)
     start()

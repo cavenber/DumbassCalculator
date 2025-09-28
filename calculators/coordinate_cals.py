@@ -3,12 +3,15 @@ if __name__ == "__main__":
     print("Error: please execute 'start.py' to start Dumbass Calculator")
     exit()
 
+import json
 from dependencies.main import stop, restart, dumb_restart
 from dependencies.checks import is_valid_expression
 from dependencies.lobby import coordinate_geometry
 from dependencies.recwriter import Recwriter
 
 def midpoint_formula():
+    with open("dependencies/answers.json", "r") as f:
+        answers = json.load(f)
     while True:
         print("\nMid-Point Formula")
         # inputs
@@ -24,6 +27,10 @@ def midpoint_formula():
         elif b == "back":
             continue
         break
+    if "(ans)" in a:
+        a = a.replace("ans", answers["ans"])
+    if "(ans)" in b:
+        b = b.replace("ans", answers["ans"])
     # verifications
     if is_valid_expression(a) and is_valid_expression(b):
         a = eval(a)
@@ -31,6 +38,9 @@ def midpoint_formula():
         # calculations
         m = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2]
         print(f"\nM = {m}\n")
+        answers["ans"] = str(m)
+        with open("dependencies/answers.json", "w") as f:
+            json.dump(answers, f)
         Recwriter.mfp5a(a, b, m)
         restart()
     else:
@@ -39,6 +49,8 @@ def midpoint_formula():
         dumb_restart()
 
 def line_slope():
+    with open("dependencies/answers.json", "r") as f:
+        answers = json.load(f)
     while True:
         print("\nLine Slope")
         # inputs
@@ -54,6 +66,10 @@ def line_slope():
         elif b == "back":
             continue
         break
+    if "(ans)" in a:
+        a = a.replace("ans", answers["ans"])
+    if "(ans)" in b:
+        b = b.replace("ans", answers["ans"])
     # verifications
     if is_valid_expression(a) and is_valid_expression(b):
         a = eval(a)
@@ -62,6 +78,9 @@ def line_slope():
         try:
             m = (b[1] - a[1]) / (b[0] - a[0])
             print(f"\nm = {m}\n")
+            answers["ans"] = str(m)
+            with open("dependencies/answers.json", "w") as f:
+                json.dump(answers, f)
             Recwriter.lsp5a(a, b, m)
         except ZeroDivisionError:
             print("m = undefined")
@@ -73,6 +92,8 @@ def line_slope():
         dumb_restart()
 
 def line_equation():
+    with open("dependencies/answers.json", "r") as f:
+        answers = json.load(f)
     while True:
         print("\nLine Equation")
         # inputs
@@ -88,6 +109,10 @@ def line_equation():
         elif b == "back":
             continue
         break
+    if "(ans)" in a:
+        a = a.replace("ans", answers["ans"])
+    if "(ans)" in b:
+        b = b.replace("ans", answers["ans"])
     # verifications
     if is_valid_expression(a) and is_valid_expression(b):
         a = eval(a)
@@ -123,12 +148,18 @@ def line_equation():
                     x = eval(x)
                     y = m * x + c
                     print(f"\ny = {y}\n")
+                    answers["ans"] = str(y)
+                    with open("dependencies/answers.json", "w") as f:
+                        json.dump(answers, f)
                     Recwriter.lep5b(a, b, m, cs, cx, x, y)
                     restart()
                 elif is_valid_expression(y):
                     y = eval(y)
                     x = (y - c) / m
                     print(f"\nx = {x}\n")
+                    answers["ans"] = str(x)
+                    with open("dependencies/answers.json", "w") as f:
+                        json.dump(answers, f)
                     Recwriter.lep5c(a, b, m, cs, cx, y, x)
                     restart()
                 else:
@@ -152,6 +183,8 @@ def line_equation():
         dumb_restart()
 
 def distance_formula():
+    with open("dependencies/answers.json", "r") as f:
+        answers = json.load(f)
     while True:
         print("\nDistance Formula")
         # inputs
@@ -167,6 +200,10 @@ def distance_formula():
         elif b == "back":
             continue
         break
+    if "(ans)" in a:
+        a = a.replace("ans", answers["ans"])
+    if "(ans)" in b:
+        b = b.replace("ans", answers["ans"])
     # verifications
     if is_valid_expression(a) and is_valid_expression(b):
         a = eval(a)
@@ -174,5 +211,8 @@ def distance_formula():
         # calculations
         d = (((b[0] - a[0]) ** 2) + ((b[1] - a[1]) ** 2)) ** 0.5
         print(f"\nDistance between the two points = {d}\n")
+        answers["ans"] = str(d)
+        with open("dependencies/answers.json", "w") as f:
+            json.dump(answers, f)
         Recwriter.dfp5a(a, b, d)
         restart()

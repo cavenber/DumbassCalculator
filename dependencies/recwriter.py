@@ -14,6 +14,12 @@ class Recwriter:
     def p2a(a, b, c, x1, x2):
         with open("dependencies/records.txt", "a") as f:
             f.write(f"\nQuadratic Equation (p2): a = {a}, b = {b}, c = {c}; x = {x1} or x = {x2}\n")
+    def p2b(a, b, c, x):
+        with open("dependencies/records.txt", "a") as f:
+            f.write(f"\nQuadratic Equation (p2): a = {a}, b = {b}, c = {c}; x = {x}\n")
+    def p2c(a, b, c):
+        with open("dependencies/records.txt", "a") as f:
+            f.write(f"\nQuadratic Equation (p2): a = {a}, b = {b}, c = {c}; No real roots\n")
     # Direct Variation (p3)
     def dvp3a(k):
         with open("dependencies/records.txt", "a") as f:

@@ -4,12 +4,15 @@ if __name__ == "__main__":
     exit()
 
 import math
+import json
 from dependencies.main import stop, restart, dumb_restart
 from dependencies.checks import is_valid_expression
 from dependencies.lobby import triangular_calculation
 from dependencies.recwriter import Recwriter
 
 def pythagorean_theorem():
+    with open("dependencies/answers.json", "r") as f:
+        answers = json.load(f)
     while True:
         print("\nPythagorean Theorem")
         # inputs
@@ -30,6 +33,10 @@ def pythagorean_theorem():
         elif c == "back":
             continue
         break
+    if "(ans)" in a:
+        a = a.replace("ans", answers["ans"])
+    if "(ans)" in b:
+        b = b.replace("ans", answers["ans"])
     # verifications
     if is_valid_expression(a) and is_valid_expression(b):
         a = eval(a)
@@ -37,6 +44,9 @@ def pythagorean_theorem():
         # calculations
         c = ((a ** 2) + (b ** 2)) ** 0.5
         print(f"\nc = {c}\n")
+        answers["ans"] = str(c)
+        with open("dependencies/answers.json", "w") as f:
+            json.dump(answers, f)
         Recwriter.ptp6a(a, b, c)
         restart()
     # verifications
@@ -46,6 +56,9 @@ def pythagorean_theorem():
         # calculations
         b = ((c ** 2) - (a ** 2)) ** 0.5
         print(f"\nb = {b}\n")
+        answers["ans"] = str(b)
+        with open("dependencies/answers.json", "w") as f:
+            json.dump(answers, f)
         Recwriter.ptp6b(a, c, b)
         restart()
     # verifications
@@ -55,6 +68,9 @@ def pythagorean_theorem():
         # calculations
         a = ((c ** 2) - (b ** 2)) ** 0.5
         print(f"\na = {a}\n")
+        answers["ans"] = str(a)
+        with open("dependencies/answers.json", "w") as f:
+            json.dump(answers, f)
         Recwriter.ptp6c(b, c, a)
         restart()
     else:
@@ -63,6 +79,8 @@ def pythagorean_theorem():
         dumb_restart()
 
 def sine_formula():
+    with open("dependencies/answers.json", "r") as f:
+        answers = json.load(f)
     while True:
         print("\nSine Formula")
         # inputs
@@ -88,6 +106,14 @@ def sine_formula():
         elif inb == "back":
             continue
         break
+    if "(ans)" in inA:
+        inA = inA.replace("ans", answers["ans"])
+    if "(ans)" in ina:
+        ina = ina.replace("ans", answers["ans"])
+    if "(ans)" in inB:
+        inB = inB.replace("ans", answers["ans"])
+    if "(ans)" in inb:
+        inb = inb.replace("ans", answers["ans"])
     # verifications
     if is_valid_expression(inA) and is_valid_expression(ina) and is_valid_expression(inB):
         A = eval(inA)
@@ -98,6 +124,9 @@ def sine_formula():
         B = math.radians(B)
         b = (a * math.sin(B)) / math.sin(A)
         print(f"\nUnknown Side = {b}\n")
+        answers["ans"] = str(b)
+        with open("dependencies/answers.json", "w") as f:
+            json.dump(answers, f)
         Recwriter.sfp6a(inA, ina, inB, b)
         restart()
     # verifications
@@ -110,6 +139,9 @@ def sine_formula():
         B = (math.sin(A) * b) / a
         B = math.degrees(math.asin(B))
         print(f"\nUnknown Angle = {B}\n")
+        answers["ans"] = str(B)
+        with open("dependencies/answers.json", "w") as f:
+            json.dump(answers, f)
         Recwriter.sfp6b(inA, ina, inb, B)
         restart()
     else:
@@ -118,6 +150,8 @@ def sine_formula():
         dumb_restart()
 
 def cosine_formula():
+    with open("dependencies/answers.json", "r") as f:
+        answers = json.load(f)
     while True:
         # input
         print("\nCosine Formula")
@@ -143,6 +177,14 @@ def cosine_formula():
         elif inc == "back":
             continue
         break
+    if "(ans)" in ina:
+        ina = ina.replace("ans", answers["ans"])
+    if "(ans)" in inb:
+        inb = inb.replace("ans", answers["ans"])
+    if "(ans)" in inC:
+        inC = inC.replace("ans", answers["ans"])
+    if "(ans)" in inc:
+        inc = inc.replace("ans", answers["ans"])
     # verifications
     if is_valid_expression(ina) and is_valid_expression(inb) and is_valid_expression(inC):
         a = eval(ina)
@@ -152,6 +194,9 @@ def cosine_formula():
         C = math.radians(C)
         c = ((a ** 2) + (b ** 2) - (2 * a * b * math.cos(C))) ** 0.5
         print(f"\nUnknown Side = {c}\n")
+        answers["ans"] = str(c)
+        with open("dependencies/answers.json", "w") as f:
+            json.dump(answers, f)
         Recwriter.cfp6a(ina, inb, inC, c)
         restart()
     # verifications
@@ -163,6 +208,9 @@ def cosine_formula():
         C = ((a ** 2) + (b ** 2) - (c ** 2)) / (2 * a * b)
         C = math.degrees(math.acos(C))
         print(f"\nUnknown Angle = {C}\n")
+        answers["ans"] = str(C)
+        with open("dependencies/answers.json", "w") as f:
+            json.dump(answers, f)
         Recwriter.cfp6b(ina, inb, inc, C)
         restart()
     else:
