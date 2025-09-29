@@ -38,9 +38,10 @@ def arithmetic_operation():
     if "(ans)" in equationIn:
         equationIn = equationIn.replace("ans", answers["ans"])
     if is_valid_equation(equationIn):
+        equation = equationIn
         math_functions = ['sqrt', 'radians', 'sin', 'cos', 'tan', 'log']
         for func in math_functions:
-            equation = equationIn.replace(func, f'math.{func}')
+            equation = equation.replace(func, f'math.{func}')
         # calculations
         ans = eval(equation, {"__builtins__": {}, "math": math})
         print(f"\nResult of the entered calculation is {ans}\n")

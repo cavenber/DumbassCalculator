@@ -29,7 +29,7 @@ def start():
         print("\nHow to Use Dumbass Calculator:\n"
             "Enter the numbers you have that matches the variables\n"
             "For an unknown variable enter a 'x' or a '.' or whatever\n"
-            "enter '(ans)' to use the answer of your previous calculation\n"
+            "Enter '(ans)' to use the answer of your previous calculation\n"
             "\nProgram list:\n"
             "1: Arithmetic Operation\n"
             "2: Quadratic Equation\n"
