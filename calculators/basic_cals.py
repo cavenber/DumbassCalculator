@@ -6,12 +6,12 @@ if __name__ == "__main__":
 import math
 import json
 from dependencies.main import start, stop, restart, dumb_restart
-from dependencies.checks import is_valid_int, is_valid_expression, is_valid_equation
+from dependencies.checks import is_valid_int, is_valid_expression, is_valid_equation, replacer
 from dependencies.recwriter import Recwriter
 
 def arithmetic_operation():
-    with open("dependencies/answers.json", "r") as f:
-        answers = json.load(f)
+    with open("dependencies/data.json", "r") as f:
+        data = json.load(f)
     print("\nArithmetic Operation")
     # inputs
     equationIn = input("Please enter your calculation ('help' for assistance): ").lower()
@@ -35,8 +35,7 @@ def arithmetic_operation():
         Recwriter.p1a("2 + 2", ans)
         restart()
     # verifications
-    if "(ans)" in equationIn:
-        equationIn = equationIn.replace("ans", answers["ans"])
+    equationIn = replacer(equationIn)
     if is_valid_equation(equationIn):
         equation = equationIn
         math_functions = ['sqrt', 'radians', 'sin', 'cos', 'tan', 'log']
@@ -45,9 +44,9 @@ def arithmetic_operation():
         # calculations
         ans = eval(equation, {"__builtins__": {}, "math": math})
         print(f"\nResult of the entered calculation is {ans}\n")
-        answers["ans"] = str(ans)
-        with open("dependencies/answers.json", "w") as f:
-            json.dump(answers, f)
+        data["ans"] = str(ans)
+        with open("dependencies/data.json", "w") as f:
+            json.dump(data, f)
         Recwriter.p1a(equationIn, ans)
         restart()
     else:
@@ -56,8 +55,8 @@ def arithmetic_operation():
         dumb_restart()
 
 def quadratic_equation():
-    with open("dependencies/answers.json", "r") as f:
-        answers = json.load(f)
+    with open("dependencies/data.json", "r") as f:
+        data = json.load(f)
     while True:
         print("\nQuadratic Equation")
         # inputs
@@ -78,12 +77,9 @@ def quadratic_equation():
         elif c == "back":
             continue
         break
-    if "(ans)" in a:
-        a = a.replace("ans", answers["ans"])
-    if "(ans)" in b:
-        b = b.replace("ans", answers["ans"])
-    if "(ans)" in c:
-        c = c.replace("ans", answers["ans"])
+    a = replacer(a)
+    b = replacer(b)
+    c = replacer(c)
     # verifications
     if is_valid_expression(a) and is_valid_expression(b) and is_valid_expression(c):
         a = eval(a)
@@ -110,9 +106,9 @@ def quadratic_equation():
                 xx = x
             print(f"\n(x {xs} {xx}) ** 2 = 0\n"
                   f"x = {x}\n")
-            answers["ans"] = str(x)
-            with open("dependencies/answers.json", "w") as f:
-                json.dump(answers, f)
+            data["ans"] = str(x)
+            with open("dependencies/data.json", "w") as f:
+                json.dump(data, f)
             Recwriter.p2b(a, b, c, x)
             restart()
         elif discriminant > 0:
@@ -132,6 +128,10 @@ def quadratic_equation():
                 x2x = x2
             print(f"\n(x {x1s} {x1x}) (x {x2s} {x2x}) = 0\n"
                   f"x = {x1} or x = {x2}\n")
+            data["x1"] = str(x1)
+            data["x2"] = str(x2)
+            with open("dependencies/data.json", "w") as f:
+                json.dump(data, f)
             Recwriter.p2a(a, b, c, x1, x2)
             restart()
     else:
@@ -140,8 +140,8 @@ def quadratic_equation():
         dumb_restart()
 
 def set_operation():
-    with open("dependencies/answers.json", "r") as f:
-        answers = json.load(f)
+    with open("dependencies/data.json", "r") as f:
+        data = json.load(f)
     while True:
         print("\nSet Operation")
         # input
@@ -162,10 +162,8 @@ def set_operation():
         elif b == "back":
             continue
         break
-    if "(ans)" in a:
-        a = a.replace("ans", answers["ans"])
-    if "(ans)" in b:
-        b = b.replace("ans", answers["ans"])
+    a = replacer(a)
+    b = replacer(b)
     # verification
     if is_valid_expression(a) and is_valid_expression(b) and op in ("u", "i", "d"): # verification
         a = eval(a)
@@ -173,25 +171,25 @@ def set_operation():
         if op == "u": # calculation
             ans = list(set(a).union(b))
             print(f"\nThe union of A and B is {ans}\n")
-            answers["ans"] = str(ans)
-            with open("dependencies/answers.json", "w") as f:
-                json.dump(answers, f)
+            data["ans"] = str(ans)
+            with open("dependencies/data.json", "w") as f:
+                json.dump(data, f)
             Recwriter.p8a(a, b, ans)
             restart()
         elif op == "i":
             ans = list(set(a).intersection(b))
             print(f"\nThe intersection of A and B is {ans}\n")
-            answers["ans"] = str(ans)
-            with open("dependencies/answers.json", "w") as f:
-                json.dump(answers, f)
+            data["ans"] = str(ans)
+            with open("dependencies/data.json", "w") as f:
+                json.dump(data, f)
             Recwriter.p8b(a, b, ans)
             restart()
         elif op == "d":
             ans = list(set(a).difference(b))
             print(f"\nThe difference of A and B is {ans}\n")
-            answers["ans"] = str(ans)
-            with open("dependencies/answers.json", "w") as f:
-                json.dump(answers, f)
+            data["ans"] = str(ans)
+            with open("dependencies/data.json", "w") as f:
+                json.dump(data, f)
             Recwriter.p8c(a, b, ans)
             restart()
     else:
@@ -200,8 +198,8 @@ def set_operation():
         dumb_restart()
 
 def dec_bin_conversion():
-    with open("dependencies/answers.json", "r") as f:
-        answers = json.load(f)
+    with open("dependencies/data.json", "r") as f:
+        data = json.load(f)
     while True:
         print("\nDecimal & Binary Conversion")
         # input
@@ -217,8 +215,7 @@ def dec_bin_conversion():
         elif num == "back":
             continue
         break
-    if "(ans)" in num:
-        num = num.replace("ans", answers["ans"])
+    num = replacer(num)
     if dorb == "b":
         if is_valid_expression(num): # verification
             num = eval(num)
@@ -241,9 +238,9 @@ def dec_bin_conversion():
                     p += 1
                 ans.append(d)
             print(f"\nThe binary to decimal conversion result is {ans}\n")
-            answers["ans"] = str(ans)[1:-1]
-            with open("dependencies/answers.json", "w") as f:
-                json.dump(answers, f)
+            data["ans"] = str(ans)[1:-1]
+            with open("dependencies/data.json", "w") as f:
+                json.dump(data, f)
             Recwriter.p9a(num, ans)
             restart()
         else:
@@ -269,6 +266,9 @@ def dec_bin_conversion():
                     n //= 2
                 ans.append(b)
             print(f"\nThe decimal to binary conversion result is {ans}\n")
+            data["ans"] = str(num)
+            with open("dependencies/data.json", "w") as f:
+                json.dump(data, f)
             Recwriter.p9b(num, ans)
             restart()
         else:
@@ -281,8 +281,8 @@ def dec_bin_conversion():
         dumb_restart()
 
 def caesar_cipher_encoder():
-    with open("dependencies/answers.json", "r") as f:
-        answers = json.load(f)
+    with open("dependencies/data.json", "r") as f:
+        data = json.load(f)
     while True:
         print("\nCaesar Cipher Encoder")
         # input
@@ -298,8 +298,7 @@ def caesar_cipher_encoder():
         elif shift == "back":
             continue
         break
-    if "(ans)" in shift:
-        shift = shift.replace("ans", answers["ans"])
+    shift = replacer(shift)
     if is_valid_int(shift):
         shift = int(shift)
         text = list(textIn)

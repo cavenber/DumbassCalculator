@@ -7,8 +7,8 @@ if __name__ == "__main__":
 
 def start():
     with open("dependencies/settings.json") as f:
-        settings_info = json.load(f)
-    print("-" * settings_info['line_size'])
+        settings = json.load(f)
+    print("-" * settings['line_size'])
     # inputs
     program = input("Please select a program (1-10) ('help' for assistance): ").lower()
     # options (here decides what the user needs to type to get into each program)
@@ -49,14 +49,18 @@ def start():
             "back: Go back to the last input")
         start()
     # portals
+    elif program == "factory reset":
+        factory_reset()
     elif program == "setting":
-        settings()
+        setting()
     elif program == "credit":
         credit()
     elif program == "rng":
         ranNumGen()
     elif program == "i love you":
         iloveyou()
+    elif program == "show me smth cool":
+        starStripes()
     elif program == "1":
         arithmetic_operation()
     elif program == "2":
@@ -90,10 +94,10 @@ def stop():
 # standard restart
 def restart():
     with open("dependencies/settings.json", "r") as f:
-        settings_info = json.load(f)
-    if settings_info['auto_restart'] == "true":
+        settings = json.load(f)
+    if settings['auto_restart'] == "true":
         start()
-    elif settings_info['auto_restart'] == "false":
+    elif settings['auto_restart'] == "false":
         print("Thank you for using Dumbass Calculator")
         restart_in = input("Would you like to do another calculation? (y/n): ").lower()
         if restart_in == "y":
@@ -103,7 +107,6 @@ def restart():
         else:
             print("\nthe function you selected does not exist, please check your intelligence and try again")
             dumb_restart()
-
 
 # the restart if you entered smth dumb
 def dumb_restart():
@@ -122,20 +125,20 @@ def dumb_restart():
 # this shows all the calculations made in a session
 def records():
     with open("dependencies/settings.json") as f:
-        settings_info = json.load(f)
-    print(f"\n{'=' * settings_info['line_size']}\n"
+        settings = json.load(f)
+    print(f"\n{'=' * settings['line_size']}\n"
         "Calculation Records:")
     with open("dependencies/records.txt", "r") as f:
         print(f.read())
 
-def settings():
+def setting():
     with open("dependencies/settings.json", "r") as f:
-        settings_info = json.load(f)
+        settings = json.load(f)
     while True:
         print("\nSettings")
         print("default: Restores all settings to default\n"
-              f"1: Auto Restart = {settings_info['auto_restart']}\n"
-              f"2: Line Size = {settings_info['line_size']}\n")
+              f"1: Auto Restart = {settings['auto_restart']}\n"
+              f"2: Line Size = {settings['line_size']}\n")
         change = input("Which setting would you like to change? (1-2): ").lower()
         if change == "stop":
             stop()
@@ -167,24 +170,24 @@ def settings():
             break
     if change == "default":
         if value == "y":
-            settings_info['auto_restart'] = "false"
-            settings_info['line_size'] = 44
+            settings['auto_restart'] = "false"
+            settings['line_size'] = 44
             with open("dependencies/settings.json", "w") as f:
-                json.dump(settings_info, f)
+                json.dump(settings, f)
             print("\nAll settings has been restored to default\n")
             start()
     elif change == "1":
         if value == "true":
-            settings_info['auto_restart'] = "true"
+            settings['auto_restart'] = "true"
             with open("dependencies/settings.json", "w") as f:
-                json.dump(settings_info, f)
-            print(f"\nAuto Restart has been changed to {settings_info['auto_restart']}\n")
+                json.dump(settings, f)
+            print(f"\nAuto Restart has been changed to {settings['auto_restart']}\n")
             start()
         elif value == "false":
-            settings_info['auto_restart'] = "false"
+            settings['auto_restart'] = "false"
             with open("dependencies/settings.json", "w") as f:
-                json.dump(settings_info, f)
-            print(f"\nAuto Restart has been changed to {settings_info['auto_restart']}\n")
+                json.dump(settings, f)
+            print(f"\nAuto Restart has been changed to {settings['auto_restart']}\n")
             start()
         else:
             print("\n*syntax error*")
@@ -193,11 +196,15 @@ def settings():
     elif change == "2":
         if is_valid_int(value):
             value = int(value)
-            settings_info['line_size'] = value
-            with open("dependencies/settings.json", "w") as f:
-                json.dump(settings_info, f)
-            print(f"\nLine Size has been changed to {settings_info['line_size']}\n")
-            start()
+            if value >= 42:
+                settings['line_size'] = value
+                with open("dependencies/settings.json", "w") as f:
+                    json.dump(settings, f)
+                print(f"\nLine Size has been changed to {settings['line_size']}\n")
+                start()
+            else:
+                print("\nIt would not look good, trust me\n")
+                start()
         else:
             print("\n*syntax error*")
             print("your lack of intelligence has resulted in errors")
@@ -206,10 +213,38 @@ def settings():
         print("\n*syntax error*")
         print("your lack of intelligence has resulted in errors")
         dumb_restart()
+def factory_reset():
+    confirmation = input("Are you sure you want to factory reset? (y/n): ").lower()
+    if confirmation == "y":
+        with open("dependencies/records.txt", "w") as f:
+            f.write("")
+        with open("dependencies/settings.json", "r") as f:
+            settings = json.load(f)
+        settings['auto_restart'] = "false"
+        settings['line_size'] = 44
+        with open("dependencies/settings.json", "w") as f:
+            json.dump(settings, f)
+        with open("dependencies/data.json", "r") as f:
+            data = json.load(f)
+        data['ans'] = "0"
+        data['x1'] = "0"
+        data['x2'] = "0"
+        with open("dependencies/data.json", "w") as f:
+            json.dump(data, f)
+        print("\nFactory reset successful\n")
+        start()
+    elif confirmation == "n":
+        print("\nOkay, I hope you dont play with my heart like that again\n")
+        start()
+    else:
+        print("\n*syntax error*")
+        print("your lack of intelligence has resulted in errors")
+        dumb_restart()
+
 
 import sys
 import json
 from .checks import is_valid_int
 from .lobby import variation, arithmetic_or_geometric_s, coordinate_geometry, triangular_calculation, probability_calculation
-from .eggs import credit, ranNumGen, iloveyou
+from .eggs import credit, ranNumGen, iloveyou, starStripes
 from calculators.basic_cals import arithmetic_operation, quadratic_equation, set_operation, dec_bin_conversion, caesar_cipher_encoder

@@ -39,5 +39,17 @@ def is_valid_equation(ss):
     else:
         return False
 
+def replacer(user_input):
+    with open("dependencies/data.json") as f:
+        data = json.load(f)
+    if "(ans)" in user_input:
+        user_input = user_input.replace("ans", data["ans"])
+    if "(x1)" in user_input:
+        user_input = user_input.replace("x1", data["x1"])
+    if "(x2)" in user_input:
+        user_input = user_input.replace("x2", data["x2"])
+    return user_input
+
 import re
 import math
+import json

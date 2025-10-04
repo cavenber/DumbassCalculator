@@ -5,13 +5,13 @@ if __name__ == "__main__":
 
 import json
 from dependencies.main import stop, restart, dumb_restart
-from dependencies.checks import is_valid_expression
+from dependencies.checks import is_valid_expression, replacer
 from dependencies.lobby import variation, joint_variation
 from dependencies.recwriter import Recwriter
 
 def direct_variation():
-    with open("dependencies/answers.json", "r") as f:
-        answers = json.load(f)
+    with open("dependencies/data.json", "r") as f:
+        data = json.load(f)
     while True:
         print("\nDirect Variation")
         # inputs
@@ -27,10 +27,8 @@ def direct_variation():
         elif y == "back":
             continue
         break
-    if "(ans)" in x:
-        x = x.replace("ans", answers["ans"])
-    if "(ans)" in y:
-        y = y.replace("ans", answers["ans"])
+    x = replacer(x)
+    y = replacer(y)
     # verifications
     if is_valid_expression(x) and is_valid_expression(y):
         x = eval(x)
@@ -38,14 +36,14 @@ def direct_variation():
         # calculations
         k = y / x
         print(f"\ny = {k} * x\n")
-        answers["ans"] = str(k)
-        with open("dependencies/answers.json", "w") as f:
-            json.dump(answers, f)
+        data["ans"] = str(k)
+        with open("dependencies/data.json", "w") as f:
+            json.dump(data, f)
         # use the calculated equation
         use = input("Would you like to use this equation? (y/n): ").lower()
         if use == "y":
-            with open("dependencies/answers.json", "r") as f:
-                answers = json.load(f)
+            with open("dependencies/data.json", "r") as f:
+                data = json.load(f)
             while True:
                 # inputs
                 x = input("Please enter your x: ").lower()
@@ -62,19 +60,17 @@ def direct_variation():
                 elif y == "back":
                     continue
                 break
-            if "(ans)" in x:
-                x = x.replace("ans", answers["ans"])
-            if "(ans)" in y:
-                y = y.replace("ans", answers["ans"])
+            x = replacer(x)
+            y = replacer(y)
             # verifications
             if is_valid_expression(x):
                 x = eval(x)
                 # calculations
                 y = k * x
                 print(f"\ny = {y}\n")
-                answers["ans"] = str(y)
-                with open("dependencies/answers.json", "w") as f:
-                    json.dump(answers, f)
+                data["ans"] = str(y)
+                with open("dependencies/data.json", "w") as f:
+                    json.dump(data, f)
                 Recwriter.dvp3b(y, k, x)
                 restart()
             elif is_valid_expression(y):
@@ -82,9 +78,9 @@ def direct_variation():
                 # calculations
                 x = y / k
                 print(f"\nx = {x}\n")
-                answers["ans"] = str(x)
-                with open("dependencies/answers.json", "w") as f:
-                    json.dump(answers, f)
+                data["ans"] = str(x)
+                with open("dependencies/data.json", "w") as f:
+                    json.dump(data, f)
                 Recwriter.dvp3b(y, k, x)
                 restart()
             else:
@@ -104,8 +100,8 @@ def direct_variation():
         dumb_restart()
 
 def inverse_variation():
-    with open("dependencies/answers.json", "r") as f:
-        answers = json.load(f)
+    with open("dependencies/data.json", "r") as f:
+        data = json.load(f)
     while True:
         print("\nInverse Variation")
         # inputs
@@ -121,10 +117,8 @@ def inverse_variation():
         elif y == "back":
             continue
         break
-    if "(ans)" in x:
-        x = x.replace("ans", answers["ans"])
-    if "(ans)" in y:
-        y = y.replace("ans", answers["ans"])
+    x = replacer(x)
+    y = replacer(y)
     # verifications
     if is_valid_expression(x) and is_valid_expression(y):
         x = eval(x)
@@ -132,14 +126,14 @@ def inverse_variation():
         # calculations
         k = y * x
         print(f"\ny = {k} / x\n")
-        answers["ans"] = str(k)
-        with open("dependencies/answers.json", "w") as f:
-            json.dump(answers, f)
+        data["ans"] = str(k)
+        with open("dependencies/data.json", "w") as f:
+            json.dump(data, f)
         # use the calculated equation
         use = input("Would you like to use this equation? (y/n): ").lower()
         if use == "y":
-            with open("dependencies/answers.json", "r") as f:
-                answers = json.load(f)
+            with open("dependencies/data.json", "r") as f:
+                data = json.load(f)
             while True:
                 # inputs
                 x = input("Please enter your x: ").lower()
@@ -156,19 +150,17 @@ def inverse_variation():
                 elif y == "back":
                     continue
                 break
-            if "(ans)" in x:
-                x = x.replace("ans", answers["ans"])
-            if "(ans)" in y:
-                y = y.replace("ans", answers["ans"])
+            x = replacer(x)
+            y = replacer(y)
             #verifications
             if is_valid_expression(x):
                 x = eval(x)
                 # calculations
                 y = k / x
                 print(f"\ny = {y}\n")
-                answers["ans"] = str(y)
-                with open("dependencies/answers.json", "w") as f:
-                    json.dump(answers, f)
+                data["ans"] = str(y)
+                with open("dependencies/data.json", "w") as f:
+                    json.dump(data, f)
                 Recwriter.ivp3b(y, k, x)
                 restart()
             elif is_valid_expression(y):
@@ -176,9 +168,9 @@ def inverse_variation():
                 # calculations
                 x = k / y
                 print(f"\nx = {x}\n")
-                answers["ans"] = str(x)
-                with open("dependencies/answers.json", "w") as f:
-                    json.dump(answers, f)
+                data["ans"] = str(x)
+                with open("dependencies/data.json", "w") as f:
+                    json.dump(data, f)
                 Recwriter.ivp3b(y, k, x)
             else:
                 print("\n*syntax error*")
@@ -197,8 +189,8 @@ def inverse_variation():
         dumb_restart()
 
 def joint_variation_form1():
-    with open("dependencies/answers.json", "r") as f:
-        answers = json.load(f)
+    with open("dependencies/data.json", "r") as f:
+        data = json.load(f)
     while True:
         print("\nJoint Variation")
         print("According to z = k * x * y")
@@ -220,12 +212,9 @@ def joint_variation_form1():
         elif z == "back":
             continue
         break
-    if "(ans)" in x:
-        x = x.replace("ans", answers["ans"])
-    if "(ans)" in y:
-        y = y.replace("ans", answers["ans"])
-    if "(ans)" in z:
-        z = z.replace("ans", answers["ans"])
+    x = replacer(x)
+    y = replacer(y)
+    z = replacer(z)
     # verifications
     if is_valid_expression(x) and is_valid_expression(y) and is_valid_expression(z):
         x = eval(x)
@@ -235,14 +224,14 @@ def joint_variation_form1():
         k = x * y
         k = z / k
         print(f"\nz = {k} * x * y\n")
-        answers["ans"] = str(k)
-        with open("dependencies/answers.json", "w") as f:
-            json.dump(answers, f)
+        data["ans"] = str(k)
+        with open("dependencies/data.json", "w") as f:
+            json.dump(data, f)
         # use the calculated equation
         use = input("Would you like to use this equation? (y/n) ").lower()
         if use == "y":
-            with open("dependencies/answers.json", "r") as f:
-                answers = json.load(f)
+            with open("dependencies/data.json", "r") as f:
+                data = json.load(f)
             while True:
                 # inputs
                 x = input("Please enter your x: ").lower()
@@ -259,10 +248,8 @@ def joint_variation_form1():
                 elif y == "back":
                     continue
                 break
-            if "(ans)" in x:
-                x = x.replace("ans", answers["ans"])
-            if "(ans)" in y:
-                y = y.replace("ans", answers["ans"])
+            x = replacer(x)
+            y = replacer(y)
             # verifications
             if is_valid_expression(x) and is_valid_expression(y):
                 x = eval(x)
@@ -270,9 +257,9 @@ def joint_variation_form1():
                 # calculations
                 z = k * x * y
                 print(f"\nz = {z}\n")
-                answers["ans"] = str(z)
-                with open("dependencies/answers.json", "w") as f:
-                    json.dump(answers, f)
+                data["ans"] = str(z)
+                with open("dependencies/data.json", "w") as f:
+                    json.dump(data, f)
                 Recwriter.jv1p3b(z, k, x, y)
                 restart()
             else:
@@ -292,8 +279,8 @@ def joint_variation_form1():
         dumb_restart()
 
 def joint_variation_form2():
-    with open("dependencies/answers.json", "r") as f:
-        answers = json.load(f)
+    with open("dependencies/data.json", "r") as f:
+        data = json.load(f)
     while True:
         print("\nJoint Variation")
         print("According to z = k * x / y")
@@ -315,12 +302,9 @@ def joint_variation_form2():
         elif z == "back":
             continue
         break
-    if "(ans)" in x:
-        x = x.replace("ans", answers["ans"])
-    if "(ans)" in y:
-        y = y.replace("ans", answers["ans"])
-    if "(ans)" in z:
-        z = z.replace("ans", answers["ans"])
+    x = replacer(x)
+    y = replacer(y)
+    z = replacer(z)
     # verifications
     if is_valid_expression(x) and is_valid_expression(y) and is_valid_expression(z):
         x = eval(x)
@@ -330,14 +314,14 @@ def joint_variation_form2():
         e = z * y
         k = e / x
         print(f"\nz = {k} * x / y\n")
-        answers["ans"] = str(k)
-        with open("dependencies/answers.json", "w") as f:
-            json.dump(answers, f)
+        data["ans"] = str(k)
+        with open("dependencies/data.json", "w") as f:
+            json.dump(data, f)
         # use the calculated equation
         use = input("Would you like to use this equation? (y/n): ").lower()
         if use == "y":
-            with open("dependencies/answers.json", "r") as f:
-                answers = json.load(f)
+            with open("dependencies/data.json", "r") as f:
+                data = json.load(f)
             while True:
                 # inputs
                 x = input("Please enter your x: ").lower()
@@ -354,10 +338,8 @@ def joint_variation_form2():
                 elif y == "back":
                     continue
                 break
-            if "(ans)" in x:
-                x = x.replace("ans", answers["ans"])
-            if "(ans)" in y:
-                y = y.replace("ans", answers["ans"])
+            x = replacer(x)
+            y = replacer(y)
             # verifications
             if is_valid_expression(x) and is_valid_expression(y):
                 x = eval(x)
@@ -365,9 +347,9 @@ def joint_variation_form2():
                 # calculations
                 z = k * x / y
                 print(f"\nz = {z}\n")
-                answers["ans"] = str(z)
-                with open("dependencies/answers.json", "w") as f:
-                    json.dump(answers, f)
+                data["ans"] = str(z)
+                with open("dependencies/data.json", "w") as f:
+                    json.dump(data, f)
                 Recwriter.jv2p3b(z, k, x, y)
                 restart()
             else:
