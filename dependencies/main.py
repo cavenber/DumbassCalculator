@@ -64,7 +64,7 @@ Program List:
         ranNumGen()
     elif program == "i love you":
         iloveyou()
-    elif program == "i wanna see stars" or "i want to see stars":
+    elif program == "i wanna see stars" or program == "i want to see stars":
         starStripes()
     elif program == "1":
         arithmetic_operation()
