@@ -71,7 +71,7 @@ def iloveyou():
     start()
 
 def starStripes():
-    print("You wanna see smth cool?")
+    print("You wanna see stars?")
     time.sleep(1)
     print("Alright here you go :)")
     time.sleep(1)
@@ -107,9 +107,9 @@ def starStripes():
             time.sleep(0.01)
         loop += 1
     time.sleep(1)
-    print("Cool right?")
+    print("What do you think?")
     time.sleep(1)
-    print("Anyways, get your ass back to math")
+    print("Alright, get your ass back to math")
     time.sleep(1)
     start()
 

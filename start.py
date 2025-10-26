@@ -13,7 +13,7 @@ title = r"""
 \___/\_,_/_/\__/\_,_/_/\_,_/\__/\___/_/   
 ··········································
 """
-version = "version 14.1"
+version = "version 14.1.1"
 fillin = r"""
 ·
 :
@@ -40,6 +40,4 @@ if __name__ == "__main__":
     for fillinPrint, titlePrint, fillinPrint in zip(fillinPrint, titlePrint, fillinPrint):
         print(fillinPrint * fillinAmount1 + titlePrint + fillinPrint * fillinAmount2)
     print(version)
-    with open("dependencies/records.txt", "w") as f:
-        f.write("")
     start()

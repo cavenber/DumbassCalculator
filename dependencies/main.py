@@ -26,27 +26,32 @@ def start():
             print("the program you selected does not exist, please check your intelligence and try again")
             dumb_restart()
     elif program == "help":
-        print("\nHow to Use Dumbass Calculator:\n"
-            "Enter the numbers you have that matches the variables\n"
-            "For an unknown variable enter a 'x' or a '.' or whatever\n"
-            "Enter '(ans)' to use the answer of your previous calculation\n"
-            "\nProgram list:\n"
-            "1: Arithmetic Operation\n"
-            "2: Quadratic Equation\n"
-            "3: Variation\n"
-            "4: Arithmetic Sequence/Series & Geometric Sequence/Series\n"
-            "5: Coordinate Geometry\n"
-            "6: Triangular Calculation\n"
-            "7: Probability Calculation\n"
-            "8: Set Operation\n"
-            "9: Decimal & Binary Conversion\n"
-            "10: Caesar Cipher Encoder\n"
-            "\nFunctions:\n"
-            "setting: Configure Dumbass Calculator\n"
-            "rng: Random Number Generator\n"
-            "\nCommand list:\n"
-            "stop: Put a stop to Dumbass Calculators plans\n"
-            "back: Go back to the last input")
+        print(r"""
+How to Use Dumbass Calculator:
+    Enter the numbers you have that matches the variables
+    For an unknown variable enter a "x" or a "." or whatever
+    Enter "(ans)", "(x1)" or "(x2)" to use the answer of your previous calculation
+
+Functions:
+    setting: Configure Dumbass Calculator
+    rng: Random Number Generator
+
+Command List:
+    stop: Put a stop to Dumbass Calculators plans
+    back: Go back to the last input
+
+Program List:
+    1: Arithmetic Operation
+    2: Quadratic Equation
+    3: Variation
+    4: Arithmetic Sequence/Series & Geometric Sequence/Series
+    5: Coordinate Geometry
+    6: Triangular Calculation
+    7: Probability Calculation
+    8: Set Operation
+    9: Decimal & Binary Conversion
+    10: Caesar Cipher Encoder
+""")
         start()
     # portals
     elif program == "factory reset":
@@ -59,7 +64,7 @@ def start():
         ranNumGen()
     elif program == "i love you":
         iloveyou()
-    elif program == "show me smth cool":
+    elif program == "i wanna see stars" or "i want to see stars":
         starStripes()
     elif program == "1":
         arithmetic_operation()
@@ -89,6 +94,7 @@ def start():
 def stop():
     records()
     print("Have a pleasant day")
+    cleaner()
     sys.exit()
 
 # standard restart
@@ -117,10 +123,13 @@ def dumb_restart():
     elif restart_in == "n":
         records()
         print("you are nothing but a mindless meat-bag")
+        cleaner()
         sys.exit()
     else:
         print("\nreally... again...")
         print("you are one of the reasons humans are doomed to extinct")
+        cleaner()
+        sys.exit()
 
 # this shows all the calculations made in a session
 def records():
@@ -131,11 +140,22 @@ def records():
     with open("dependencies/records.txt", "r") as f:
         print(f.read())
 
+def cleaner():
+    with open("dependencies/records.txt", "w") as f:
+        f.write("")
+    with open("dependencies/data.json", "r") as f:
+        data = json.load(f)
+    data['ans'] = "0"
+    data['x1'] = "0"
+    data['x2'] = "0"
+    with open("dependencies/data.json", "w") as f:
+        json.dump(data, f)
+
 def setting():
     with open("dependencies/settings.json", "r") as f:
         settings = json.load(f)
     while True:
-        print("\nSettings")
+        print("\nSettings\n")
         print("default: Restores all settings to default\n"
               f"1: Auto Restart = {settings['auto_restart']}\n"
               f"2: Line Size = {settings['line_size']}\n")
@@ -213,6 +233,7 @@ def setting():
         print("\n*syntax error*")
         print("your lack of intelligence has resulted in errors")
         dumb_restart()
+
 def factory_reset():
     confirmation = input("Are you sure you want to factory reset? (y/n): ").lower()
     if confirmation == "y":
@@ -222,15 +243,7 @@ def factory_reset():
             settings = json.load(f)
         settings['auto_restart'] = "false"
         settings['line_size'] = 44
-        with open("dependencies/settings.json", "w") as f:
-            json.dump(settings, f)
-        with open("dependencies/data.json", "r") as f:
-            data = json.load(f)
-        data['ans'] = "0"
-        data['x1'] = "0"
-        data['x2'] = "0"
-        with open("dependencies/data.json", "w") as f:
-            json.dump(data, f)
+        cleaner()
         print("\nFactory reset successful\n")
         start()
     elif confirmation == "n":
@@ -240,7 +253,6 @@ def factory_reset():
         print("\n*syntax error*")
         print("your lack of intelligence has resulted in errors")
         dumb_restart()
-
 
 import sys
 import json
