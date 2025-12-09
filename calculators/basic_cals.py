@@ -27,7 +27,8 @@ def arithmetic_operation():
             "* = Multiplication\n"
             "/ = Division\n"
             "** = Exponentiation\n"
-            "() can also be used\n")
+            "() can be used\n"
+            "sqrt(), radians(), sin(), cos(), tan(), log() can be used")
         arithmetic_operation()
     elif equationIn in ["2 + 2", "2+2", "2 +2", "2+ 2"]: # Radiohead reference
         ans = 5

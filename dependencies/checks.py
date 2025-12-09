@@ -5,7 +5,7 @@ if __name__ == "__main__":
     print("Error: please execute 'start.py' to start Dumbass Calculator")
     exit()
 
-# to verify if the input number is a valid float
+# to verify if the input number is a valid integer
 def is_valid_int(ss):
     try:
         int(ss)
@@ -13,6 +13,7 @@ def is_valid_int(ss):
     except ValueError:
         return False
 
+# to verify if the input string is a valid expression (simple math)
 def is_valid_expression(ss):
     pattern = r"^[\d\s+\-*/%(),.]+\**$"
     if re.match(pattern, ss):
@@ -24,7 +25,7 @@ def is_valid_expression(ss):
     else:
         return False
 
-# to verify if the input string is a valid equation
+# to verify if the input string is a valid equation (with complicated math)
 def is_valid_equation(ss):
     pattern = r'^[\d\s+\-*/%(),.]*(?:\b(sqrt|radians|sin|cos|tan|log)\s*\([^)]*\)\s*)*[\d\s+\-*/%(),.]*$'
     if re.match(pattern, ss):
@@ -39,6 +40,7 @@ def is_valid_equation(ss):
     else:
         return False
 
+#this replaces certain keywords to the data stored
 def replacer(user_input):
     with open("dependencies/data.json") as f:
         data = json.load(f)
