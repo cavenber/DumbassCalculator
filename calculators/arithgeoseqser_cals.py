@@ -4,15 +4,12 @@ if __name__ == "__main__":
     exit()
 
 import math
-import json
 from dependencies.main import stop, restart, dumb_restart
 from dependencies.checks import is_valid_expression, replacer
 from dependencies.lobby import arithmetic_or_geometric_s
 from dependencies.recwriter import Recwriter
 
 def arithmetic_sequence():
-    with open("dependencies/data.json", "r") as f:
-        data = json.load(f)
     while True:
         print("\nArithmetic Sequence")
         # inputs
@@ -52,9 +49,6 @@ def arithmetic_sequence():
         d = t2 - t1
         tn = a + (n - 1) * d
         print(f"\nT({n}) = {tn}\n")
-        data["ans"] = str(tn)
-        with open("dependencies/data.json", "w") as f:
-            json.dump(data, f)
         Recwriter.asqp4a(t1, t2, n, tn)
         restart()
     # verifications
@@ -67,9 +61,6 @@ def arithmetic_sequence():
         d = t2 - t1
         n = ((tn - a) / d) + 1
         print(f"n = {n}")
-        data["ans"] = str(n)
-        with open("dependencies/data.json", "w") as f:
-            json.dump(data, f)
         Recwriter.asqp4b(t1, t2, tn, n)
         restart()
     elif is_valid_expression(t1) and is_valid_expression(t2): # only T(1) and T(2) are provided
@@ -94,8 +85,6 @@ def arithmetic_sequence():
         dumb_restart()
 
 def arithmetic_series():
-    with open("dependencies/data.json", "r") as f:
-        data = json.load(f)
     while True:
         print("\nArithmetic Series")
         # inputs
@@ -135,9 +124,6 @@ def arithmetic_series():
         d = t2 - t1
         sn = (n / 2) * (2 * a + (n - 1) * d)
         print(f"\nS({n}) = {sn}\n")
-        data["ans"] = str(sn)
-        with open("dependencies/data.json", "w") as f:
-            json.dump(data, f)
         Recwriter.asrp4a(t1, t2, n, sn)
         restart()
     # verifications
@@ -153,9 +139,6 @@ def arithmetic_series():
         n = x / d
         sn = (n / 2) * (2 * a + (n - 1) * d)
         print(f"\nS({n}) = {sn}\n")
-        data["ans"] = str(sn)
-        with open("dependencies/data.json", "w") as f:
-            json.dump(data, f)
         Recwriter.asrp4b(t1, t2, tn, sn)
         restart()
     else:
@@ -164,8 +147,6 @@ def arithmetic_series():
         dumb_restart()
 
 def geometric_sequence():
-    with open("dependencies/data.json", "r") as f:
-        data = json.load(f)
     while True:
         print("\nGeometric Sequence")
         # inputs
@@ -205,9 +186,6 @@ def geometric_sequence():
         r = t2 / t1
         tn = a * (r ** (n - 1))
         print(f"\nT({n}) = {tn}\n")
-        data["ans"] = str(tn)
-        with open("dependencies/data.json", "w") as f:
-            json.dump(data, f)
         Recwriter.gsqp4a(t1, t2, n, tn)
         restart()
     # verifications
@@ -222,9 +200,6 @@ def geometric_sequence():
         log = math.log(x, r)
         n = log + 1
         print(f"\nn = {n}\n")
-        data["ans"] = str(n)
-        with open("dependencies/data.json", "w") as f:
-            json.dump(data, f)
         Recwriter.gsqp4b(t1, t2, tn, n)
         restart()
     else:
@@ -233,8 +208,6 @@ def geometric_sequence():
         dumb_restart()
 
 def geometric_series():
-    with open("dependencies/data.json", "r") as f:
-        data = json.load(f)
     while True:
         print("\nGeometric Series")
         # inputs
@@ -274,9 +247,6 @@ def geometric_series():
         r = t2 / t1
         sn = (a * (1 - (r ** n))) / (1 - r)
         print(f"\nS({n}) = {sn}\n")
-        data["ans"] = str(sn)
-        with open("dependencies/data.json", "w") as f:
-            json.dump(data, f)
         Recwriter.gsrp4a(t1, t2, n, sn)
         restart()
     # verifications
@@ -292,9 +262,6 @@ def geometric_series():
         n = log + 1
         sn = (a * (1 - (r ** n))) / (1 - r)
         print(f"\nS({n}) = {sn}\n")
-        data["ans"] = str(sn)
-        with open("dependencies/data.json", "w") as f:
-            json.dump(data, f)
         Recwriter.gsrp4b(t1, t2, tn, sn)
         restart()
     else:

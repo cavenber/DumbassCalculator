@@ -3,15 +3,12 @@ if __name__ == "__main__":
     print("Error: please execute 'start.py' to start Dumbass Calculator")
     exit()
 
-import json
 from dependencies.main import stop, restart, dumb_restart
 from dependencies.checks import is_valid_expression, replacer
 from dependencies.lobby import coordinate_geometry
 from dependencies.recwriter import Recwriter
 
 def midpoint_formula():
-    with open("dependencies/data.json", "r") as f:
-        data = json.load(f)
     while True:
         print("\nMid-Point Formula")
         # inputs
@@ -36,9 +33,6 @@ def midpoint_formula():
         # calculations
         m = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2]
         print(f"\nM = {m}\n")
-        data["ans"] = str(m)
-        with open("dependencies/data.json", "w") as f:
-            json.dump(data, f)
         Recwriter.mfp5a(a, b, m)
         restart()
     else:
@@ -47,8 +41,6 @@ def midpoint_formula():
         dumb_restart()
 
 def line_slope():
-    with open("dependencies/data.json", "r") as f:
-        data = json.load(f)
     while True:
         print("\nLine Slope")
         # inputs
@@ -74,9 +66,6 @@ def line_slope():
         try:
             m = (b[1] - a[1]) / (b[0] - a[0])
             print(f"\nm = {m}\n")
-            data["ans"] = str(m)
-            with open("dependencies/data.json", "w") as f:
-                json.dump(data, f)
             Recwriter.lsp5a(a, b, m)
         except ZeroDivisionError:
             print("m = undefined")
@@ -88,8 +77,6 @@ def line_slope():
         dumb_restart()
 
 def line_equation():
-    with open("dependencies/data.json", "r") as f:
-        data = json.load(f)
     while True:
         print("\nLine Equation")
         # inputs
@@ -142,18 +129,12 @@ def line_equation():
                     x = eval(x)
                     y = m * x + c
                     print(f"\ny = {y}\n")
-                    data["ans"] = str(y)
-                    with open("dependencies/data.json", "w") as f:
-                        json.dump(data, f)
                     Recwriter.lep5b(a, b, m, cs, cx, x, y)
                     restart()
                 elif is_valid_expression(y):
                     y = eval(y)
                     x = (y - c) / m
                     print(f"\nx = {x}\n")
-                    data["ans"] = str(x)
-                    with open("dependencies/data.json", "w") as f:
-                        json.dump(data, f)
                     Recwriter.lep5c(a, b, m, cs, cx, y, x)
                     restart()
                 else:
@@ -177,8 +158,6 @@ def line_equation():
         dumb_restart()
 
 def distance_formula():
-    with open("dependencies/data.json", "r") as f:
-        data = json.load(f)
     while True:
         print("\nDistance Formula")
         # inputs
@@ -203,8 +182,5 @@ def distance_formula():
         # calculations
         d = (((b[0] - a[0]) ** 2) + ((b[1] - a[1]) ** 2)) ** 0.5
         print(f"\nDistance between the two points = {d}\n")
-        data["ans"] = str(d)
-        with open("dependencies/data.json", "w") as f:
-            json.dump(data, f)
         Recwriter.dfp5a(a, b, d)
         restart()
