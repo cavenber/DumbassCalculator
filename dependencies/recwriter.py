@@ -142,7 +142,7 @@ class Recwriter:
             json.dump(data, f)
         with open("dependencies/records.txt", "a") as f:
             f.write(f"\nArithmetic Series (p4): t1 = {t1}, t2 = {t2}, n = {n}; S({n}) = {sn}\n")
-    def asrp4b(t1, t2, tn, sn):
+    def asrp4b(t1, t2, tn, n, sn):
         with open("dependencies/data.json", "r") as f:
             data = json.load(f)
         data["ans"] = str(sn)
@@ -176,7 +176,7 @@ class Recwriter:
             json.dump(data, f)
         with open("dependencies/records.txt", "a") as f:
             f.write(f"\nGeometric Series (p4): t1 = {t1}, t2 = {t2}, n = {n}; S({n}) = {sn}\n")
-    def gsrp4b(t1, t2, tn, sn):
+    def gsrp4b(t1, t2, tn, n, sn):
         with open("dependencies/data.json", "r") as f:
             data = json.load(f)
         data["ans"] = str(sn)

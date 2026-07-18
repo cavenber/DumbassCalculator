@@ -139,7 +139,7 @@ def arithmetic_series():
         n = x / d
         sn = (n / 2) * (2 * a + (n - 1) * d)
         print(f"\nS({n}) = {sn}\n")
-        Recwriter.asrp4b(t1, t2, tn, sn)
+        Recwriter.asrp4b(t1, t2, tn, n, sn)
         restart()
     else:
         print("\n*syntax error*")
@@ -262,7 +262,7 @@ def geometric_series():
         n = log + 1
         sn = (a * (1 - (r ** n))) / (1 - r)
         print(f"\nS({n}) = {sn}\n")
-        Recwriter.gsrp4b(t1, t2, tn, sn)
+        Recwriter.gsrp4b(t1, t2, tn, n, sn)
         restart()
     else:
         print("\n*syntax error*")
